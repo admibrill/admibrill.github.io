@@ -839,3 +839,6 @@ input[name="colors"] {
   height: 2.4em;
   color: var(--theme-color)
 }
+.site-title{
+  color: #000000
+}

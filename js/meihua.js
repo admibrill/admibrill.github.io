@@ -425,7 +425,7 @@ function createWinbox() {
   </div>
   
   <h2>二、字体设置</h2>
-  {% note warning modern %}非商免字体未经授权只能个人使用。本站为完全非商业、非盈利性质的网站，平时用于个人学习交流，如有侵权请联系站长删除，谢谢！ —— 致版权方{% endnote %}
+  非商免字体未经授权只能个人使用。本站为完全非商业、非盈利性质的网站，平时用于个人学习交流，如有侵权请联系站长删除，谢谢！ —— 致版权方
   <p id="swfs">
   <a class="swf" id="swf_ZhuZiAWan" href="javascript:;" rel="noopener external nofollow" style="font-family:'ZhuZiAWan'!important;color:black" onclick="setFont('ZhuZiAWan')">筑紫A丸标准体2.0</a>
   <a class="swf" id="swf_default" href="javascript:;" rel="noopener external nofollow" style="font-family:-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif;!important;color:black" onclick="setFont('default')">系统默认</a>
@@ -449,70 +449,74 @@ function createWinbox() {
   <center><button onclick="resetBg()" style="background:var(--theme-color);display:block;width:35%;padding:15px 0;border-radius:30px;color:white;"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;恢复默认背景</button></center>
   
   <h3>1. 二次元</h3>
-  {% folding cyan, 查看二次元背景 %}
+  查看二次元背景 
   <div class="bgbox">
   <a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://sourcebucket.s3.ladydaily.com/img/home_bg.webp)" class="imgbox" onclick="changeBg('url(https\://sourcebucket.s3.ladydaily.com/img/home_bg.webp)')"></a>
   </div>
-  {% endfolding %}
+  
   
   
   <h3>2. 风景</h3>
   
-  {% folding cyan, 查看风景背景 %}
+  查看风景背景 
   <div class="bgbox">
-  <a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://sourcebucket.s3.ladydaily.com/img/fj1.webp)" class="imgbox" onclick="changeBg('url(https://sourcebucket.s3.ladydaily.com/img/fj1.webp)')"></a>
+  <a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://sourcebucket.s3.ladydaily.com/img/ fj1.webp)" class="imgbox" onclick="changeBg('url(https://sourcebucket.s3.ladydaily.com/img/fj1.webp)')"></a>
   
   </div>
-  {% endfolding %}
+  
   
   <h3>3. 萌宠</h3>
   
-  {% folding cyan, 查看萌宠背景 %}
+  查看萌宠背景 
   <div class="bgbox">
   <a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://sourcebucket.s3.ladydaily.com/img/mc1.webp)" class="imgbox" onclick="changeBg('url(https://sourcebucket.s3.ladydaily.com/img/mc1.webp)')"></a>
   </div>
-  {% endfolding %}
+  
   
   <h3>4. 渐变色</h3>
-  {% folding cyan, 查看渐变色背景 %}
+  查看渐变色背景 
   <div class="bgbox">
   <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)" onclick="changeBg('linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)')"></a>
   </div>
-  {% endfolding %}
+  
   
   
   <h3>5. 纯色</h3>
-  {% folding cyan, 查看纯色背景 %}
+  查看纯色背景 
   <div class="bgbox">
   <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #f7eff5" onclick="changeBg('#f7eff5')"></a>  
   <input type="color" id="colors" href="javascript:;" rel="noopener external nofollow" class="box" autocomplete="on" value="${defineColor}" oninput="changeBgColor()"></input>
   </div>
-  {% endfolding %}
+  
   
   
   
   <h3>6. 适配手机</h3>
-  {% folding cyan, 查看适配手机的背景 %}
+  查看适配手机的背景 
   <div class="bgbox">
   <a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://sourcebucket.s3.ladydaily.com/img/mb4.webp)" class="pimgbox" onclick="changeBg('url(https\://sourcebucket.s3.ladydaily.com/img/mb4.webp)')"></a>
-  {% endfolding %}
   
+  </div>
   
+
+
+
+
   <h3>7. 自定义背景</h3>
-  {% folding cyan, 设置自定义背景 %}
+  设置自定义背景 
   <p><center>
   <input type="text" id="pic-link" size="70%" maxlength="1000" placeholder="请输入有效的图片链接，如 https://source.fomal.cc/img/home_bg.webp">
   </center></p>
+  <br>
   <p><center>
   <button type="button" onclick="getPicture()" style="background:var(--theme-color);width:35%;padding: 5px 0px 7px 0px;border-radius:30px;color:white;line-height:2;">🌈切换背景🌈</button>
   </center></p>
-  {% endfolding %}
+  
   
   <br>
-  <center><div style="font-size:1.2em;color:var(--theme-color);font-weight:bold;">------ ( •̀ ω •́ )y 到底啦 ------</div></center>
+  <center><div style="font-size:1.2em;color:var(--theme-color);font-weight:bold;">------ 哎呦！到底啦！ ------</div></center>
   <br>
   
-  </div>
   
   </div>
   
