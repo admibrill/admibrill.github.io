@@ -197,7 +197,7 @@ function showWelcome() {
             }
             break;
         default:
-            posdesc = "带我去你的国家逛逛吧。";
+            posdesc = "带我去你的国家逛逛吧。Show me around your country.";
             break;
     }
 
