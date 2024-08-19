@@ -4,24 +4,24 @@ if (localStorage.getItem("reset_2") == undefined) {
     localStorage.removeItem("reset_1");
     clearItem();
     setTimeout(function () {
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "提示🍒",
-            message: " (｡･∀･)ﾉﾞ由于网站部分设置项更新，当前已为您重置所有设置，祝您愉快！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 8000
-          });
-        }
-      })
+        new Vue({
+            data: function () {
+                this.$notify({
+                    title: "提示🍒",
+                    message: " (｡･∀･)ﾉﾞ由于网站部分设置项更新，当前已为您重置所有设置，祝您愉快！",
+                    position: 'top-left',
+                    offset: 50,
+                    showClose: true,
+                    type: "success",
+                    duration: 8000
+                });
+            }
+        })
     }, 1500);
-  }
-  
-  // 清除localStorage配置项
-  function clearItem() {
+}
+
+// 清除localStorage配置项
+function clearItem() {
     localStorage.removeItem('blogbg');
     localStorage.removeItem('universe');
     localStorage.removeItem('blur');
@@ -33,44 +33,44 @@ if (localStorage.getItem("reset_2") == undefined) {
     localStorage.removeItem('themeColor');
     localStorage.removeItem('rs');
     localStorage.removeItem('mouse');
-  }
-  
-  
-  // 设置字体
-  if (localStorage.getItem("font") == undefined) {
+}
+
+
+// 设置字体
+if (localStorage.getItem("font") == undefined) {
     localStorage.setItem("font", "xxx");
-  }
-  setFont(localStorage.getItem("font"));
-  function setFont(n) {
+}
+setFont(localStorage.getItem("font"));
+function setFont(n) {
     localStorage.setItem("font", n)
     if (n == "default") {
-      document.documentElement.style.setProperty('--global-font', '-apple-system');
-      document.body.style.fontFamily = "-apple-system, Consolas_1, BlinkMacSystemFont, 'Segoe UI' , 'Helvetica Neue' , Lato, Roboto, 'PingFang SC' , 'Microsoft JhengHei' , 'Microsoft YaHei' , sans-serif";
+        document.documentElement.style.setProperty('--global-font', '-apple-system');
+        document.body.style.fontFamily = "-apple-system, Consolas_1, BlinkMacSystemFont, 'Segoe UI' , 'Helvetica Neue' , Lato, Roboto, 'PingFang SC' , 'Microsoft JhengHei' , 'Microsoft YaHei' , sans-serif";
     }
     else {
-      document.documentElement.style.setProperty('--global-font', n);
-      document.body.style.fontFamily = "var(--global-font),-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif";
+        document.documentElement.style.setProperty('--global-font', n);
+        document.body.style.fontFamily = "var(--global-font),-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif";
     }
     try { setFontBorder(); } catch (err) { };
-  }
-  
-  // 设置字体选择框边界
-  function setFontBorder() {
+}
+
+// 设置字体选择框边界
+function setFontBorder() {
     var curFont = localStorage.getItem("font");
     var swfId = "swf_" + curFont;
     document.getElementById(swfId).style.border = "2px solid var(--theme-color)";
     Array.prototype.forEach.call(document.getElementsByClassName("swf"), function (ee) {
-      if (ee.id != swfId) ee.style.border = "2px solid var(--border-color)";
+        if (ee.id != swfId) ee.style.border = "2px solid var(--border-color)";
     });
-  }
-  
-  
-  // 设置主题色
-  if (localStorage.getItem("themeColor") == undefined) {
+}
+
+
+// 设置主题色
+if (localStorage.getItem("themeColor") == undefined) {
     localStorage.setItem("themeColor", "green");
-  }
-  setColor(localStorage.getItem("themeColor"));
-  function setColor(c) {
+}
+setColor(localStorage.getItem("themeColor"));
+function setColor(c) {
     document.getElementById("themeColor").innerText = `:root{--theme-color:` + map.get(c) + ` !important}`;
     localStorage.setItem("themeColor", c);
     // 刷新鼠标颜色
@@ -79,75 +79,75 @@ if (localStorage.getItem("reset_2") == undefined) {
     var theme_color = map.get(c);
     var trans_theme_color = "rgba" + theme_color.substring(3, theme_color.length - 1) + ", 0.7)";
     document.documentElement.style.setProperty("--text-bg-hover", trans_theme_color);
-  }
-  
-  
-  // 控制星空背景特效开关
-  if (localStorage.getItem("universe") == undefined) {
+}
+
+
+// 控制星空背景特效开关
+if (localStorage.getItem("universe") == undefined) {
     localStorage.setItem("universe", "block");
-  }
-  
-  setUniverse2(localStorage.getItem("universe"));
-  function setUniverse2(c) {
+}
+
+setUniverse2(localStorage.getItem("universe"));
+function setUniverse2(c) {
     document.getElementById("universe").style.display = c;
     localStorage.setItem("universe", c);
-  }
-  
-  function setUniverse() {
+}
+
+function setUniverse() {
     if (document.getElementById("universeSet").checked) {
-      setUniverse2("block");
+        setUniverse2("block");
     } else {
-      setUniverse2("none");
+        setUniverse2("none");
     }
-  }
-  
-  // 帧率监测开关
-  if (localStorage.getItem("fpson") == undefined) {
+}
+
+// 帧率监测开关
+if (localStorage.getItem("fpson") == undefined) {
     localStorage.setItem("fpson", "1");
-  }
-  function fpssw() {
+}
+function fpssw() {
     if (document.getElementById("fpson").checked) {
-      localStorage.setItem("fpson", "1");
+        localStorage.setItem("fpson", "1");
     } else {
-      localStorage.setItem("fpson", "0");
+        localStorage.setItem("fpson", "0");
     }
     setTimeout(reload, 600);
-  }
-  
-  // 刷新窗口
-  function reload() {
+}
+
+// 刷新窗口
+function reload() {
     window.location.reload();
-  }
-  
-  // 侧边栏开关
-  if (localStorage.getItem("rs") == undefined) {
+}
+
+// 侧边栏开关
+if (localStorage.getItem("rs") == undefined) {
     localStorage.setItem("rs", "block");
-  }
-  if (localStorage.getItem("rs") == "block") {
+}
+if (localStorage.getItem("rs") == "block") {
     document.getElementById("rightSide").innerText = `:root{--rightside-display: block}`;
-  } else {
+} else {
     document.getElementById("rightSide").innerText = `:root{--rightside-display: none}`;
-  }
-  function toggleRightside() {
+}
+function toggleRightside() {
     // 先设置localStorage变量
     if (document.getElementById("rightSideSet").checked) {
-      localStorage.setItem("rs", "block");
-      document.getElementById("rightSide").innerText = `:root{--rightside-display: block}`;
+        localStorage.setItem("rs", "block");
+        document.getElementById("rightSide").innerText = `:root{--rightside-display: block}`;
     } else {
-      localStorage.setItem("rs", "none");
-      document.getElementById("rightSide").innerText = `:root{--rightside-display: none}`;
+        localStorage.setItem("rs", "none");
+        document.getElementById("rightSide").innerText = `:root{--rightside-display: none}`;
     }
-  }
-  
-  
-  // 透明度调节滑块
-  if (localStorage.getItem("transNum") == undefined) {
+}
+
+
+// 透明度调节滑块
+if (localStorage.getItem("transNum") == undefined) {
     localStorage.setItem("transNum", 95);
-  }
-  var curTransNum = localStorage.getItem("transNum");
-  var curTransMini = curTransNum * 0.95;
-  document.getElementById("transPercent").innerText = `:root{--trans-light: rgba(253, 253, 253, ${curTransNum}%) !important; --trans-dark: rgba(25, 25, 25, ${curTransNum}%) !important} `;
-  function setTrans() {
+}
+var curTransNum = localStorage.getItem("transNum");
+var curTransMini = curTransNum * 0.95;
+document.getElementById("transPercent").innerText = `:root{--trans-light: rgba(253, 253, 253, ${curTransNum}%) !important; --trans-dark: rgba(25, 25, 25, ${curTransNum}%) !important} `;
+function setTrans() {
     var elem = document.getElementById("transSet");
     var newTransNum = elem.value;
     var target = document.querySelector('.transValue');
@@ -157,17 +157,17 @@ if (localStorage.getItem("reset_2") == undefined) {
     curTransNum = newTransNum;  // 更新当前透明度
     document.querySelector('#rang_trans').style.width = curTransMini + "%";
     document.getElementById("transPercent").innerText = `:root{--trans-light: rgba(253, 253, 253, ${newTransNum}%) !important; --trans-dark: rgba(25, 25, 25, ${newTransNum}%) !important} `;
-  };
-  
-  
-  // 模糊度调节滑块
-  if (localStorage.getItem("blurRad") == undefined) {
+};
+
+
+// 模糊度调节滑块
+if (localStorage.getItem("blurRad") == undefined) {
     localStorage.setItem("blurRad", 20);
-  }
-  var curBlur = localStorage.getItem("blurRad"); // 当前模糊半径
-  var miniBlur = curBlur * 0.95;
-  document.getElementById("blurNum").innerText = `:root{--blur-num: blur(${curBlur}px) saturate(120%) !important`;
-  function setBlurNum() {
+}
+var curBlur = localStorage.getItem("blurRad"); // 当前模糊半径
+var miniBlur = curBlur * 0.95;
+document.getElementById("blurNum").innerText = `:root{--blur-num: blur(${curBlur}px) saturate(120%) !important`;
+function setBlurNum() {
     var elem = document.getElementById("blurSet");
     var newBlur = elem.value;
     var target = document.querySelector('.blurValue');
@@ -178,36 +178,36 @@ if (localStorage.getItem("reset_2") == undefined) {
     // var max = elem.getAttribute("max");
     document.querySelector('#rang_blur').style.width = miniBlur + "%";
     document.getElementById("blurNum").innerText = `:root{--blur-num: blur(${curBlur}px) saturate(120%) !important`;
-  };
-  
-  
-  // 模糊效果开关
-  if (localStorage.getItem("blur") == undefined) {
+};
+
+
+// 模糊效果开关
+if (localStorage.getItem("blur") == undefined) {
     localStorage.setItem("blur", 0);
-  }
-  if (localStorage.getItem("blur") == 0) {
+}
+if (localStorage.getItem("blur") == 0) {
     document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: none}`;
-  } else {
+} else {
     document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: var(--blur-num)}`;
-  }
-  function setBlur() {
+}
+function setBlur() {
     if (document.getElementById("blur").checked) {
-      localStorage.setItem("blur", 1);
-      document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: var(--blur-num)}`;
+        localStorage.setItem("blur", 1);
+        document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: var(--blur-num)}`;
     } else {
-      localStorage.setItem("blur", 0);
-      document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: none}`;
+        localStorage.setItem("blur", 0);
+        document.getElementById("settingStyle").innerText = `:root{--backdrop-filter: none}`;
     }
-  }
-  
-  // 切换自定义颜色
-  var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#F4D88A';
-  function changeBgColor() {
+}
+
+// 切换自定义颜色
+var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#F4D88A';
+function changeBgColor() {
     changeBg(document.querySelector("#colors").value);
-  }
-  
-  // 更换背景(自己的代码)
-  if (localStorage.getItem("blogbg") != undefined) {
+}
+
+// 更换背景(自己的代码)
+if (localStorage.getItem("blogbg") != undefined) {
     let curBg = localStorage.getItem("blogbg");
     document.getElementById("defineBg").innerText = `:root{
       --default-bg: ${curBg};
@@ -216,177 +216,177 @@ if (localStorage.getItem("reset_2") == undefined) {
       --mobilenight-bg: ${curBg};
     }`;
     changeBg(curBg);
-  } else {
-      // 替换你自己的默认背景
+} else {
+    // 替换你自己的默认背景
     document.getElementById("defineBg").innerText = `:root{
       --default-bg: url(xxx);
       --darkmode-bg:url(xxx);
       --mobileday-bg: url(xxx);
       --mobilenight-bg: url(xxx);
     }`;
-  }
-  function changeBg(s) {
+}
+function changeBg(s) {
     let bg = document.getElementById("web_bg");
     if (s.charAt(0) == "#") {
-      bg.style.backgroundColor = s;
-      bg.style.backgroundImage = "none";
-      defineColor = s;
+        bg.style.backgroundColor = s;
+        bg.style.backgroundImage = "none";
+        defineColor = s;
     } else {
-      bg.style.backgroundImage = s
-      defineColor = '#F4D88A';
+        bg.style.backgroundImage = s
+        defineColor = '#F4D88A';
     };
     localStorage.setItem("blogbg", s);
     localStorage.setItem("bing", "false");
     if (document.getElementById("bingSet")) document.getElementById("bingSet").checked = false;
-  }
-  
-  
-  // 切换链接对应的背景(加入了链接检验与防抖)
-  function getPicture() {
+}
+
+
+// 切换链接对应的背景(加入了链接检验与防抖)
+function getPicture() {
     debounce(getPicture_, 300);
-  }
-  
-  function getPicture_() {
+}
+
+function getPicture_() {
     let bg = document.getElementById("web_bg");
     checkImgExists(document.getElementById("pic-link").value).then(() => {
-      // 有效的图片链接
-      var link = "url(" + document.getElementById("pic-link").value + ")";
-      bg.style.backgroundImage = link;
-      localStorage.setItem("blogbg", link);
-      localStorage.setItem("bing", "false");
-      if (document.getElementById("bingSet")) document.getElementById("bingSet").checked = false;
-      // 提示切换成功
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "可以啦🍨",
-            message: "切换自定义背景成功！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 5000
-          });
-        }
-      })
+        // 有效的图片链接
+        var link = "url(" + document.getElementById("pic-link").value + ")";
+        bg.style.backgroundImage = link;
+        localStorage.setItem("blogbg", link);
+        localStorage.setItem("bing", "false");
+        if (document.getElementById("bingSet")) document.getElementById("bingSet").checked = false;
+        // 提示切换成功
+        new Vue({
+            data: function () {
+                this.$notify({
+                    title: "可以啦🍨",
+                    message: "切换自定义背景成功！",
+                    position: 'top-left',
+                    offset: 50,
+                    showClose: true,
+                    type: "success",
+                    duration: 5000
+                });
+            }
+        })
     }).catch(() => {
-      // 无效的图片链接，提示无效
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "链接不对🤣",
-            message: "请输入有效的图片链接！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "warning",
-            duration: 5000
-          });
-        }
-      })
+        // 无效的图片链接，提示无效
+        new Vue({
+            data: function () {
+                this.$notify({
+                    title: "链接不对🤣",
+                    message: "请输入有效的图片链接！",
+                    position: 'top-left',
+                    offset: 50,
+                    showClose: true,
+                    type: "warning",
+                    duration: 5000
+                });
+            }
+        })
     })
-  }
-  // 判断图片链接是否可用
-  function checkImgExists(imgurl) {
+}
+// 判断图片链接是否可用
+function checkImgExists(imgurl) {
     return new Promise(function (resolve, reject) {
-      var ImgObj = new Image();
-      ImgObj.src = imgurl;
-      ImgObj.onload = function (res) {
-        resolve(res);
-      }
-      ImgObj.onerror = function (err) {
-        reject(err);
-      }
+        var ImgObj = new Image();
+        ImgObj.src = imgurl;
+        ImgObj.onload = function (res) {
+            resolve(res);
+        }
+        ImgObj.onerror = function (err) {
+            reject(err);
+        }
     })
-  }
-  
-  
-  // 必应每日图片
-  if (localStorage.getItem("bing") == undefined) {
+}
+
+
+// 必应每日图片
+if (localStorage.getItem("bing") == undefined) {
     localStorage.setItem("bing", "false");
-  }
-  if (localStorage.getItem("bing") == "true") {
+}
+if (localStorage.getItem("bing") == "true") {
     let bg = document.getElementById("web_bg");
     // 手机电脑分开
     let curUrl = screen.width <= 768 ? "url(https://bing.img.run/m.php)" : "url(https://bing.img.run/1920x1080.php)";
     bg.style.backgroundImage = curUrl;
-  }
-  function setBing() {
+}
+function setBing() {
     // 打开就设置
     if (document.getElementById("bingSet").checked) {
-      let bg = document.getElementById("web_bg");
-      // 手机电脑分开
-      let curUrl = screen.width <= 768 ? "url(https://bing.img.run/m.php)" : "url(https://bing.img.run/1920x1080.php)";
-      bg.style.backgroundImage = curUrl;
-      localStorage.setItem("bing", "true");
-      localStorage.removeItem("blogbg");
+        let bg = document.getElementById("web_bg");
+        // 手机电脑分开
+        let curUrl = screen.width <= 768 ? "url(https://bing.img.run/m.php)" : "url(https://bing.img.run/1920x1080.php)";
+        bg.style.backgroundImage = curUrl;
+        localStorage.setItem("bing", "true");
+        localStorage.removeItem("blogbg");
     } else {
-      // 关闭就移除并恢复默认壁纸
-      localStorage.setItem("bing", "false");
-      setTimeout(reload, 600);
+        // 关闭就移除并恢复默认壁纸
+        localStorage.setItem("bing", "false");
+        setTimeout(reload, 600);
     }
-  }
-  
-  // 霓虹灯开关
-  var clk;  // 定时器对象
-  if (localStorage.getItem("light") == undefined) {
+}
+
+// 霓虹灯开关
+var clk;  // 定时器对象
+if (localStorage.getItem("light") == undefined) {
     localStorage.setItem("light", true);
-  }
-  if (localStorage.getItem("light") == "true") {
+}
+if (localStorage.getItem("light") == "true") {
     clearInterval(clk);
     clk = setInterval(changeLightColor, 1200);
-  }
-  function setLight() {
+}
+function setLight() {
     if (document.getElementById("lightSet").checked) {
-      clearInterval(clk);
-      clk = setInterval(changeLightColor, 1200);
-      localStorage.setItem("light", "true");
+        clearInterval(clk);
+        clk = setInterval(changeLightColor, 1200);
+        localStorage.setItem("light", "true");
     } else {
-      clearInterval(clk);
-      localStorage.setItem("light", "false");
-      // 恢复默认
-      if (document.getElementById("site-name"))
-        document.getElementById("site-name").style.textShadow = "#1e1e1ee0 1px 1px 1px";
-      if (document.getElementById("site-title"))
-        document.getElementById("site-title").style.textShadow = "#1e1e1ee0 1px 1px 1px";
-      if (document.getElementById("site-subtitle"))
-        document.getElementById("site-subtitle").style.textShadow = "#1e1e1ee0 1px 1px 1px";
-      if (document.getElementById("post-info"))
-        document.getElementById("post-info").style.textShadow = "#1e1e1ee0 1px 1px 1px";
-      try {
-        document.getElementsByClassName("author-info__name")[0].style.textShadow = "";
-        document.getElementsByClassName("author-info__description")[0].style.textShadow = "";
-      } catch {
-  
-      }
+        clearInterval(clk);
+        localStorage.setItem("light", "false");
+        // 恢复默认
+        if (document.getElementById("site-name"))
+            document.getElementById("site-name").style.textShadow = "#1e1e1ee0 1px 1px 1px";
+        if (document.getElementById("site-title"))
+            document.getElementById("site-title").style.textShadow = "#1e1e1ee0 1px 1px 1px";
+        if (document.getElementById("site-subtitle"))
+            document.getElementById("site-subtitle").style.textShadow = "#1e1e1ee0 1px 1px 1px";
+        if (document.getElementById("post-info"))
+            document.getElementById("post-info").style.textShadow = "#1e1e1ee0 1px 1px 1px";
+        try {
+            document.getElementsByClassName("author-info__name")[0].style.textShadow = "";
+            document.getElementsByClassName("author-info__description")[0].style.textShadow = "";
+        } catch {
+
+        }
     }
-  }
-  
-  // 创建窗口
-  var winbox = "";
-  
-  function createWinbox() {
+}
+
+// 创建窗口
+var winbox = "";
+
+function createWinbox() {
     let div = document.createElement("div");
     document.body.appendChild(div);
     winbox = WinBox({
-      id: "meihuaBox",
-      index: 99,
-      title: "美化设置",
-      x: "left",
-      y: "center",
-      minwidth: "300px",
-      height: "60%",
-      background: 'var(--theme-color)',
-      onmaximize: () => {
-        div.innerHTML = `<style>body::-webkit-scrollbar {display: none;} div#meihuaBox {width: 100% !important;}</style>`;
-      },
-      onrestore: () => {
-        div.innerHTML = "";
-      },
+        id: "meihuaBox",
+        index: 99,
+        title: "美化设置",
+        x: "left",
+        y: "center",
+        minwidth: "300px",
+        height: "60%",
+        background: 'var(--theme-color)',
+        onmaximize: () => {
+            div.innerHTML = `<style>body::-webkit-scrollbar {display: none;} div#meihuaBox {width: 100% !important;}</style>`;
+        },
+        onrestore: () => {
+            div.innerHTML = "";
+        },
     });
     winResize();
     window.addEventListener("resize", winResize);
-  
+
     // 每一类我放了一个演示，直接往下复制粘贴 a标签 就可以，需要注意的是 函数里面的链接 冒号前面需要添加反斜杠\进行转义
     winbox.body.innerHTML = `
   <div class="settings" style="display: block;">
@@ -517,75 +517,75 @@ if (localStorage.getItem("reset_2") == undefined) {
   </div>
   
   `;
-  
+
     // 打开小窗时候初始化
     $("#" + localStorage.getItem("themeColor")).attr("checked", true);
     if (localStorage.getItem("blur") == 1) {
-      document.getElementById("blur").checked = true;
+        document.getElementById("blur").checked = true;
     } else {
-      document.getElementById("blur").checked = false;
+        document.getElementById("blur").checked = false;
     }
     if (localStorage.getItem("universe") == "block") {
-      document.getElementById("universeSet").checked = true;
+        document.getElementById("universeSet").checked = true;
     } else if (localStorage.getItem("universe") == "none") {
-      document.getElementById("universeSet").checked = false;
+        document.getElementById("universeSet").checked = false;
     }
     if (localStorage.getItem("fpson") == "1") {
-      document.getElementById("fpson").checked = true;
+        document.getElementById("fpson").checked = true;
     } else {
-      document.getElementById("fpson").checked = false;
+        document.getElementById("fpson").checked = false;
     }
     if (localStorage.getItem("rs") == "block") {
-      document.getElementById("rightSideSet").checked = true;
+        document.getElementById("rightSideSet").checked = true;
     } else if (localStorage.getItem("rs") == "none") {
-      document.getElementById("rightSideSet").checked = false;
+        document.getElementById("rightSideSet").checked = false;
     }
     if (localStorage.getItem("bing") == "true") {
-      document.getElementById("bingSet").checked = true;
+        document.getElementById("bingSet").checked = true;
     } else {
-      document.getElementById("bingSet").checked = false;
+        document.getElementById("bingSet").checked = false;
     }
     if (localStorage.getItem("light") == "true") {
-      document.getElementById("lightSet").checked = true;
+        document.getElementById("lightSet").checked = true;
     } else {
-      document.getElementById("lightSet").checked = false;
+        document.getElementById("lightSet").checked = false;
     }
     setFontBorder();
-  
-  }
-  
-  // 恢复默认背景
-  function resetBg() {
+
+}
+
+// 恢复默认背景
+function resetBg() {
     localStorage.removeItem('blogbg');
     reload();
-  }
-  
-  // 恢复默认设置并刷新页面
-  function reset() {
+}
+
+// 恢复默认设置并刷新页面
+function reset() {
     clearItem();
     reload();
-  }
-  
-  // 适应窗口大小
-  function winResize() {
+}
+
+// 适应窗口大小
+function winResize() {
     try {
-      var offsetWid = document.documentElement.clientWidth;
-      if (offsetWid <= 768) {
-        winbox.resize(offsetWid * 0.95 + "px", "90%").move("center", "center");
-      } else {
-        winbox.resize(offsetWid * 0.6 + "px", "70%").move("center", "center");
-      }
+        var offsetWid = document.documentElement.clientWidth;
+        if (offsetWid <= 768) {
+            winbox.resize(offsetWid * 0.95 + "px", "90%").move("center", "center");
+        } else {
+            winbox.resize(offsetWid * 0.6 + "px", "70%").move("center", "center");
+        }
     } catch (err) {
-      // console.log("Pjax毒瘤抽风运行winResize方法🙄🙄🙄");
+        // console.log("Pjax毒瘤抽风运行winResize方法🙄🙄🙄");
     }
-  }
-  
-  // 切换状态，窗口已创建则控制窗口显示和隐藏，没窗口则创建窗口
-  function toggleWinbox() {
+}
+
+// 切换状态，窗口已创建则控制窗口显示和隐藏，没窗口则创建窗口
+function toggleWinbox() {
+    console.log(0);
     if (document.querySelector("#meihuaBox")) {
-      winbox.toggleClass("hide");
+        winbox.toggleClass("hide");
     } else {
-      createWinbox();
+        createWinbox();
     };
-  }
-  
+}
