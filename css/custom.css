@@ -825,3 +825,17 @@ input[name="colors"] {
   display: none
 }
 
+.menus_item_child::after{
+  display: none
+}
+.article-sort-item.year{
+  padding: 5
+}
+.article-sort-item-info{
+  padding: 5
+}
+#toPageText{
+  width: 2.4em;
+  height: 2.4em;
+  color: var(--theme-color)
+}
