@@ -1,10 +1,9 @@
 //get请求
 $.ajax({
     type: 'get',
-    url: 'https://apis.map.qq.com/ws/location/v1/ip',
+    url: 'http://ip-api.com/json/?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query&lang=zh-CN',
     data: {
-        key: 'TKCBZ-4VP3C-3RJ2I-ADPA2-NDBMS-QTF43',
-        output: 'jsonp',
+        callback: 'jsonp',
     },
     dataType: 'jsonp',
     success: function (res) {
@@ -24,17 +23,16 @@ function getDistance(e1, n1, e2, n2) {
     let b = getPoint(e2, n2)
     let c = hypot(a.x - b.x, a.y - b.y, a.z - b.z)
     let r = asin(c / 2) * 2 * R
-    return Math.round(r);
+    return Math.round(r*1000)/1000;
 }
 
 function showWelcome() {
-
-    let dist = getDistance(114.337006, 30.525186, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
-    let pos = ipLoacation.result.ad_info.nation;
+    let dist = getDistance(114.337006, 30.525186, ipLoacation.lon, ipLoacation.lat); //这里换成自己的经纬度
+    let pos = ipLoacation.country;
     let ip;
     let posdesc;
     //根据国家、省份、城市信息自定义欢迎语
-    switch (ipLoacation.result.ad_info.nation) {
+    switch (ipLoacation.country) {
         case "日本":
             posdesc = "よろしく，一起去看樱花吗";
             break;
@@ -60,13 +58,13 @@ function showWelcome() {
             posdesc = "拾起一片枫叶赠予你";
             break;
         case "中国":
-            pos = ipLoacation.result.ad_info.province + " " + ipLoacation.result.ad_info.city + " " + ipLoacation.result.ad_info.district;
-            ip = ipLoacation.result.ip;
-            switch (ipLoacation.result.ad_info.province) {
-                case "北京市":
+            pos = ipLoacation.country+ " " +ipLoacation.regionName + " " + ipLoacation.city + " " + ipLoacation.district;
+            ip = ipLoacation.query;
+            switch (ipLoacation.regionName) {
+                case "北京":
                     posdesc = "北——京——欢迎你~~~";
                     break;
-                case "天津市":
+                case "天津":
                     posdesc = "讲段相声吧。";
                     break;
                 case "河北省":
@@ -91,11 +89,11 @@ function showWelcome() {
                     posdesc = "众所周知，中国只有两个城市。";
                     break;
                 case "江苏省":
-                    switch (ipLoacation.result.ad_info.city) {
-                        case "南京市":
+                    switch (ipLoacation.city) {
+                        case "南京":
                             posdesc = "这是我挺想去的城市啦。";
                             break;
-                        case "苏州市":
+                        case "苏州":
                             posdesc = "上有天堂，下有苏杭。";
                             break;
                         default:
@@ -107,20 +105,20 @@ function showWelcome() {
                     posdesc = "东风渐绿西湖柳，雁已还人未南归。";
                     break;
                 case "河南省":
-                    switch (ipLoacation.result.ad_info.city) {
-                        case "郑州市":
+                    switch (ipLoacation.city) {
+                        case "郑州":
                             posdesc = "豫州之域，天地之中。";
                             break;
-                        case "南阳市":
+                        case "南阳":
                             posdesc = "臣本布衣，躬耕于南阳。此南阳非彼南阳！";
                             break;
-                        case "驻马店市":
+                        case "驻马店":
                             posdesc = "峰峰有奇石，石石挟仙气。嵖岈山的花很美哦！";
                             break;
-                        case "开封市":
+                        case "开封":
                             posdesc = "刚正不阿包青天。";
                             break;
-                        case "洛阳市":
+                        case "洛阳":
                             posdesc = "洛阳牡丹甲天下。";
                             break;
                         default:
@@ -217,7 +215,7 @@ function showWelcome() {
         document.getElementById("welcome-info").innerHTML =
             `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;欢迎来自 <span style="color:var(--theme-color)">${pos}</span> 的小伙伴，${timeChange}您现在距离站长约 <span style="color:var(--theme-color)">${dist}</span> 公里，当前的IP地址为： <span style="color:var(--theme-color)">${ip}</span>， ${posdesc}</b>`;
     } catch (err) {
-        // console.log("Pjax无法获取#welcome-info元素🙄🙄🙄")
+        console.log("Pjax无法获取#welcome-info元素🙄🙄🙄");
     }
 }
 window.onload = showWelcome;

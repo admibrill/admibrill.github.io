@@ -2663,8 +2663,8 @@ i.anzhiyu-icon-hashtag {
   --global-font-size: 15px;
   --global-bg: #fff;
   --font-color: #4c4948;
-  --hr-border: #d2ebfd;
-  --hr-before-color: #bfe4fb;
+  --hr-border: #a1acf7;
+  --hr-before-color: #7b8bf4;
   --search-bg: #f6f8fa;
   --search-input-color: #4c4948;
   --search-result-title: #4c4948;
@@ -2956,7 +2956,7 @@ button {
   touch-action: manipulation;
 }
 a {
-  color: #a591e0;
+  color: #99a9bf;
   text-decoration: none;
   word-wrap: break-word;
   -webkit-transition: all 0.2s ease 0s;
@@ -13994,7 +13994,7 @@ blockquote {
   padding-left: 0;
 }
 #article-container a {
-  color: #a591e0;
+  color: #425aef;
 }
 #article-container a:hover {
   text-decoration: underline;
