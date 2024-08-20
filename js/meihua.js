@@ -82,6 +82,7 @@ function setColor(c) {
     document.documentElement.style.setProperty("--lighttext", theme_color);
     document.documentElement.style.setProperty("--anzhiyu-main", theme_color);
     document.documentElement.style.setProperty("--anzhiyu-theme", theme_color);
+    document.documentElement.style.setProperty("--font-color", theme_color);
 }
 
 

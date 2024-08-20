@@ -12,10 +12,16 @@
 }
 /* 夜间模式生效 */
 [data-theme="dark"] #site-name,
-[data-theme="dark"] #site-title {
+[data-theme="dark"] #site-title,
+[data-theme="dark"] .post-title {
   animation: light_15px 10s linear infinite;
 }
-[data-theme="dark"] #site-subtitle {
+[data-theme="dark"] #site-subtitle,
+[data-theme="dark"] .meta-firstline span,
+[data-theme="dark"] .meta-secondline span,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3{
   animation: light_10px 10s linear infinite;
 }
 [data-theme="dark"] #post-info {
@@ -851,4 +857,7 @@ input[name="colors"] {
 }
 [data-theme="dark"] #welcome-info {
   background: #212121;
+}
+div.card-content{
+  background-color: var(--theme-color);
 }
