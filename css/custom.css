@@ -858,6 +858,33 @@ input[name="colors"] {
 [data-theme="dark"] #welcome-info {
   background: #212121;
 }
-div.card-content{
+.card-widget.card-info .card-content{
   background-color: var(--theme-color);
+}
+
+/* 友链一行显示更多 */
+.site-card {
+  width: calc(100% / 5 - 16px) !important;
+  border-radius: 18px !important;
+  padding:5px;
+}
+.site-card .img {
+  height: 135px !important;
+  border-radius: 18px !important;
+}
+/* 适应宽度不同的设备 */
+@media screen and (max-width: 1200px) {
+  .site-card {
+    width: calc(100% / 4 - 16px) !important;
+  }
+}
+@media screen and (max-width: 900px) {
+  .site-card {
+    width: calc(100% / 3 - 16px) !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .site-card {
+    width: calc(100% / 2 - 16px) !important;
+  }
 }
