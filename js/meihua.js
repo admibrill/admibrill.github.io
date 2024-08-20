@@ -79,6 +79,9 @@ function setColor(c) {
     var theme_color = map.get(c);
     var trans_theme_color = "rgba" + theme_color.substring(3, theme_color.length - 1) + ", 0.7)";
     document.documentElement.style.setProperty("--text-bg-hover", trans_theme_color);
+    document.documentElement.style.setProperty("--lighttext", theme_color);
+    document.documentElement.style.setProperty("--anzhiyu-main", theme_color);
+    document.documentElement.style.setProperty("--anzhiyu-theme", theme_color);
 }
 
 
