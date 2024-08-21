@@ -5,26 +5,14 @@
     <url>/2024/08/17/%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">114514</span>,<span class="number">1919810</span>))</span><br></pre></td></tr></table></figure>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
-<p><h1>aaaa</h1></p>
+<h1 id="aaaa"><a href="#aaaa" class="headerlink" title="aaaa"></a>aaaa</h1><p>11123</p>
+<h1 id="aaaa-1"><a href="#aaaa-1" class="headerlink" title="aaaa"></a>aaaa</h1><p>13123212</p>
+<h1 id="aaaa-2"><a href="#aaaa-2" class="headerlink" title="aaaa"></a>aaaa</h1><p>132</p>
+<h1 id="aaaa-3"><a href="#aaaa-3" class="headerlink" title="aaaa"></a>aaaa</h1><p>123123</p>
+<h1 id="aaaa-4"><a href="#aaaa-4" class="headerlink" title="aaaa"></a>aaaa</h1><p>31213</p>
+<h1 id="aaaa-5"><a href="#aaaa-5" class="headerlink" title="aaaa"></a>aaaa</h1><p>3123</p>
+<h1 id="aaaa-6"><a href="#aaaa-6" class="headerlink" title="aaaa"></a>aaaa</h1><p>131323</p>
+<h1 id="aaaa-7"><a href="#aaaa-7" class="headerlink" title="aaaa"></a>aaaa</h1><p>2313</p>
 <ol>
 <li>带 <u>下划线</u> 的文本</li>
 <li>带 <emp>着重号</emp> 的文本</li>

@@ -888,3 +888,7 @@ input[name="colors"] {
     width: calc(100% / 2 - 16px) !important;
   }
 }
+
+#random-banner:hover{
+  background-color: var(--theme-color);
+}
