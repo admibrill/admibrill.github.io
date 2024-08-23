@@ -892,3 +892,7 @@ input[name="colors"] {
 #random-banner:hover{
   background-color: var(--theme-color);
 }
+
+[data-theme="light"] canvas#universe{
+  display: none;
+}

@@ -58,7 +58,7 @@ function showWelcome() {
             posdesc = "拾起一片枫叶赠予你";
             break;
         case "中国":
-            pos = ipLoacation.country+ " " +ipLoacation.regionName + " " + ipLoacation.city + " " + ipLoacation.district;
+            pos = ipLoacation.country+ " " +ipLoacation.regionName + " " + ipLoacation.city;
             ip = ipLoacation.query;
             switch (ipLoacation.regionName) {
                 case "北京":
