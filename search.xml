@@ -3,7 +3,7 @@
   <entry>
     <title>Hexo博客0氪建站记录（上）</title>
     <url>/2024/08/23/hexo1/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，都没有发过一次文章</del>。</p>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
 <p>第一篇文章，我决定记录一下我个人的建站历程。</p>
 <h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
 <h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
