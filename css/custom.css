@@ -872,6 +872,11 @@ input[name="colors"] {
   height: 135px !important;
   border-radius: 18px !important;
 }
+
+.site-card :hover{
+  background-color: var(--theme-color);
+}
+
 /* 适应宽度不同的设备 */
 @media screen and (max-width: 1200px) {
   .site-card {
