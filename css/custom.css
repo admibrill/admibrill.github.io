@@ -865,17 +865,16 @@ input[name="colors"] {
 /* 友链一行显示更多 */
 .site-card {
   width: calc(100% / 5 - 16px) !important;
-  border-radius: 18px !important;
-  padding:5px;
+  height: 120%;
 }
 .site-card .img {
   height: 135px !important;
-  border-radius: 18px !important;
+}
+.site-card:hover .img{
+  height: 100px !important;
 }
 
-.site-card :hover{
-  background-color: var(--theme-color);
-}
+
 
 /* 适应宽度不同的设备 */
 @media screen and (max-width: 1200px) {
