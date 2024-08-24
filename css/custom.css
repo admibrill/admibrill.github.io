@@ -900,3 +900,12 @@ input[name="colors"] {
 [data-theme="light"] canvas#universe{
   display: none;
 }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  /* 这里可以自定义图标大小 */
+  font-size: 5em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
