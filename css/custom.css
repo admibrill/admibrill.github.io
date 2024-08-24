@@ -541,7 +541,7 @@ blockquote {
   border: 3px solid var(--theme-color);
 }
 
-.card-widget card-info{
+.card-widget.card-info{
   background:var(--theme-color);
 }
 
@@ -865,7 +865,7 @@ input[name="colors"] {
 /* 友链一行显示更多 */
 .site-card {
   width: calc(100% / 5 - 16px) !important;
-  height: 120%;
+  height: 210px !important;
 }
 .site-card .img {
   height: 135px !important;
@@ -897,8 +897,8 @@ input[name="colors"] {
   background-color: var(--theme-color);
 }
 
-[data-theme="light"] canvas#universe{
-  display: none;
+svg.icon{
+  color: #000 !important;
 }
 
 .iconfont {
@@ -908,4 +908,47 @@ input[name="colors"] {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: "iconfont"; /* Project id 4657108 */
+  /* Color fonts */
+  src: 
+       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff2?t=1724492140869') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff?t=1724492140869') format('woff'),
+       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.ttf?t=1724492140869') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-stackoverflow:before {
+  content: "\eab3";
+}
+
+.icon-weixin:before {
+  content: "\e615";
+}
+
+.icon-csdn-copy:before {
+  content: "\e62d";
+}
+
+.icon-icon-luogu:before {
+  content: "\e604";
+}
+
+.icon-kuaishou:before {
+  content: "\e62c";
+}
+
+div a#toPageButton{
+  width: 2.6em ;
+  height: 2.6em ;
+  border-radius: 7px ;
 }
