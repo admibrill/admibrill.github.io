@@ -33,6 +33,7 @@ function clearItem() {
     localStorage.removeItem('themeColor');
     localStorage.removeItem('rs');
     localStorage.removeItem('mouse');
+    localStorage.removeItem('lizi');
 }
 
 
@@ -78,11 +79,6 @@ function setColor(c) {
     // 设置一个带有透明度的主题色，用于菜单栏的悬浮颜色
     var theme_color = map.get(c);
     var trans_theme_color = "rgba" + theme_color.substring(3, theme_color.length - 1) + ", 0.7)";
-    document.documentElement.style.setProperty("--text-bg-hover", trans_theme_color);
-    document.documentElement.style.setProperty("--lighttext", theme_color);
-    document.documentElement.style.setProperty("--anzhiyu-main", theme_color);
-    document.documentElement.style.setProperty("--anzhiyu-theme", theme_color);
-    document.documentElement.style.setProperty("--font-color", theme_color);
 }
 
 
@@ -331,6 +327,25 @@ function setBing() {
     }
 }
 
+//粒子特效                    universe
+if (localStorage.getItem("lizi") == undefined) {
+    localStorage.setItem("lizi", "block");
+}
+
+setLizi2(localStorage.getItem("lizi"));
+function setLizi2(c) {
+    document.getElementsByClassName("lizicanvas")[0].style.display = c;
+    localStorage.setItem("lizi", c);
+}
+
+function setLizi() {
+    if (document.getElementById("liziSet").checked) {
+        setLizi2("block");
+    } else {
+        setLizi2("none");
+    }
+}
+
 // 霓虹灯开关
 var clk;  // 定时器对象
 if (localStorage.getItem("light") == undefined) {
@@ -426,6 +441,10 @@ function createWinbox() {
   <div class="content" style="display:flex">
     <div class="content-text" style="font-weight:bold; padding-left:10px"> 帧率监测 (刷新生效) </div><input type="checkbox" id="fpson" onclick="fpssw()">
     <div class="content-text" style="font-weight:bold; padding-left:20px"> 必应每日壁纸 </div><input type="checkbox" id="bingSet" onclick="setBing()">
+  </div>
+
+  <div class="content" style="display:flex">
+    <div class="content-text" style="font-weight:bold; padding-left:10px"> 粒子特效 (日间模式) </div><input type="checkbox" id="liziSet" onclick="setLizi()" >
   </div>
   
   <h2>二、字体设置</h2>
@@ -557,6 +576,11 @@ function createWinbox() {
         document.getElementById("lightSet").checked = true;
     } else {
         document.getElementById("lightSet").checked = false;
+    }
+    if (localStorage.getItem("lizi") == "block") {
+        document.getElementById("liziSet").checked = true;
+    } else if (localStorage.getItem("lizi") == "none") {
+        document.getElementById("liziSet").checked = false;
     }
     setFontBorder();
 

@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo博客0氪建站记录（上）</title>
-    <url>/2024/08/23/hexo1/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
-<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
-<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
-<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
-<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
-<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
-<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
-<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
-<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
-<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
-<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
-<p>打开它，然后后面的很多命令都使用bash输入。</p>
-<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
-<p>Hexo会自动安装依赖包。</p>
-<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
-<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
-<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>等待运行完成就好了。</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
-<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
-<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>这些就是常用命令。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
-<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
-<p>下一篇，我讲讲关于博客的美化。886！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>日常记录</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>建站</tag>
-        <tag>免费</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>测试</title>
     <url>/2024/08/17/%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -139,6 +84,61 @@
       </categories>
       <tags>
         <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客0氪建站记录（上）</title>
+    <url>/2024/08/23/hexo1/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
+<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
+<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
+<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
+<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
+<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
+<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
+<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
+<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
+<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
+<p>打开它，然后后面的很多命令都使用bash输入。</p>
+<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
+<p>Hexo会自动安装依赖包。</p>
+<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
+<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
+<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>等待运行完成就好了。</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
+<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
+<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
+<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>这些就是常用命令。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
+<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
+<p>下一篇，我讲讲关于博客的美化。886！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>日常记录</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>建站</tag>
+        <tag>免费</tag>
       </tags>
   </entry>
 </search>

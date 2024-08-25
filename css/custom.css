@@ -127,7 +127,7 @@
   }
 }
 
-/* 鼠标样式 */
+/* 鼠标样式     */
 #cursor {
   position: fixed;
   width: 16px;
@@ -545,6 +545,27 @@ blockquote {
   background:var(--theme-color);
 }
 
+#nav a,
+#nav a.site-page i,span#blog_name i{
+  color :var(--theme-color) !important;
+}
+
+i:hover{
+  color: white;
+}
+
+label.widget i,a.totopbtn{
+  color: var(--theme-color)!important;
+  background: var(--theme-color) !important;
+}
+
+div#post a{
+  border-color:var(--theme-color)!important;
+  
+}
+div#post a:hover{
+  background-color: var(--theme-color) !important;
+}
 /* 背景图片链接输入框placeholder*/
 input#pic-link::-webkit-input-placeholder {
   color: rgb(150, 150, 150);
@@ -559,6 +580,17 @@ input#pic-link {
   outline: 1px solid var(--theme-color);
 }
 
+div:hover{
+  border-color:var(--theme-color)!important;
+}
+
+div.banners-title,#bbTimeList a,#home_top a,#recent-posts a{
+  color: var(--theme-color)!important;
+}
+
+.aside-list-item:hover{
+  background-color: var(--theme-color)!important;
+}
 
 /* 开关按钮                 */
 .settings input[type="checkbox"] {
