@@ -984,3 +984,12 @@ div a#toPageButton{
   height: 2.6em ;
   border-radius: 7px ;
 }
+
+.tk-comments-container a{
+  border-radius: 3px;
+  padding-left: 4px;
+}
+
+.tk-comments-container .tk-action span{
+  color: var(--anzhiyu-lighttext);
+}
