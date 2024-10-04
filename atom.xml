@@ -6,7 +6,7 @@
   <link href="https://blog.qyadbr.top/atom.xml" rel="self"/>
   
   <link href="https://blog.qyadbr.top/"/>
-  <updated>2024-09-28T04:32:38.217Z</updated>
+  <updated>2024-10-04T09:56:13.272Z</updated>
   <id>https://blog.qyadbr.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>域名迁移到blog.qyadbr.top</title>
+    <link href="https://blog.qyadbr.top/2024/10/04/hexo6/"/>
+    <id>https://blog.qyadbr.top/2024/10/04/hexo6/</id>
+    <published>2024-10-04T09:37:08.000Z</published>
+    <updated>2024-10-04T09:56:13.272Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前有一个cloudflare免费二级域名<code>admibrill1.pages.dev</code>。</p><p>二级域名就是二级域名，有很多限制，加个友链都成问题。从八月开始就想买了，但是我自己买不了，没有条件。</p><p>等到9月21日（CSP-J/S第一轮）完成，30日出成绩，总算能买了，就去阿里云买了一个。</p><p>现在，有了全新的域名<code>blog.qyadbr.top</code>,<code>qyadbr.top</code>域名下面之后会做很多服务。</p><p>拜拜！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前有一个cloudflare免费二级域名&lt;code&gt;admibrill1.pages.dev&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;二级域名就是二级域名，有很多限制，加个友链都成问题。从八月开始就想买了，但是我自己买不了，没有条件。&lt;/p&gt;
+&lt;p&gt;等到9月21日（CSP-J/S第一轮）完成，30日出成绩，总算能买了，就去阿里云买了一个。&lt;/p&gt;
+&lt;p&gt;现在，有了全新的域名&lt;code&gt;blog.qy</summary>
+      
+    
+    
+    
+    <category term="日常记录" scheme="https://blog.qyadbr.top/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="-日常记录" scheme="https://blog.qyadbr.top/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>自己动手写二维物理引擎（零）</title>
