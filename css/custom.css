@@ -1,7 +1,12 @@
 @font-face {
-    font-family: 'SJnenglianghei';
-    font-display: swap;
-    src: url('../font/AuraDianZhenSong-2.ttf') format("truetype");
+  font-family: 'ZhuZiAWan';
+  font-display: swap;
+  src: url('../font/ZhuZiAWan-2.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'XiaWuWenKai';
+  font-display: swap;
+  src: url('../font/XiaWuWenKai.ttf') format("truetype");
 }
 /* 日间模式不生效 */
 [data-theme="light"] #site-name,
@@ -875,9 +880,8 @@ input[name="colors"] {
   padding: 5
 }
 #toPageText{
-  width: 2.4em;
-  height: 2.4em;
-  color: var(--theme-color)
+  height: 2.4em !important ;
+  color: var(--theme-color);
 }
 .site-title{
   color: #000000
@@ -946,9 +950,9 @@ svg.icon{
   font-family: "iconfont"; /* Project id 4657108 */
   /* Color fonts */
   src: 
-       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff2?t=1724492140869') format('woff2'),
-       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff?t=1724492140869') format('woff'),
-       url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.ttf?t=1724492140869') format('truetype');
+    url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff2?t=1724492140869') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.woff?t=1724492140869') format('woff'),
+    url('//at.alicdn.com/t/c/font_4657108_eybppdt32k7.ttf?t=1724492140869') format('truetype');
 }
 
 .iconfont {
@@ -980,9 +984,9 @@ svg.icon{
 }
 
 div a#toPageButton{
-  width: 2.6em ;
-  height: 2.6em ;
-  border-radius: 7px ;
+  width: 2.5em ;
+  height: 2.5em ;
+  border-radius: 8px ;
 }
 
 .tk-comments-container a{

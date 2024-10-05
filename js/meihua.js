@@ -39,7 +39,7 @@ function clearItem() {
 
 // 设置字体
 if (localStorage.getItem("font") == undefined) {
-    localStorage.setItem("font", "xxx");
+    localStorage.setItem("font", "ZhuZiAWan");
 }
 setFont(localStorage.getItem("font"));
 function setFont(n) {
@@ -210,19 +210,19 @@ function changeBgColor() {
 if (localStorage.getItem("blogbg") != undefined) {
     let curBg = localStorage.getItem("blogbg");
     document.getElementById("defineBg").innerText = `:root{
-      --default-bg: ${curBg};
-      --darkmode-bg: ${curBg};
-      --mobileday-bg: ${curBg};
-      --mobilenight-bg: ${curBg};
+        --default-bg: ${curBg};
+        --darkmode-bg: ${curBg};
+        --mobileday-bg: ${curBg};
+        --mobilenight-bg: ${curBg};
     }`;
     changeBg(curBg);
 } else {
     // 替换你自己的默认背景
     document.getElementById("defineBg").innerText = `:root{
-      --default-bg: url(xxx);
-      --darkmode-bg:url(xxx);
-      --mobileday-bg: url(xxx);
-      --mobilenight-bg: url(xxx);
+        --default-bg: url(xxx);
+        --darkmode-bg:url(xxx);
+        --mobileday-bg: url(xxx);
+        --mobilenight-bg: url(xxx);
     }`;
 }
 function changeBg(s) {
@@ -450,7 +450,8 @@ function createWinbox() {
   <h2>二、字体设置</h2>
   非商免字体未经授权只能个人使用。本站为完全非商业、非盈利性质的网站，平时用于个人学习交流，如有侵权请联系站长删除，谢谢！ —— 致版权方
   <p id="swfs">
-  <a class="swf" id="swf_ZhuZiAWan" href="javascript:;" rel="noopener external nofollow" style="font-family:'ZhuZiAWan'!important;color:black" onclick="setFont('ZhuZiAWan')">筑紫A丸标准体2.0</a>
+  <a class="swf" id="swf_ZhuZiAWan" href="javascript:;" rel="noopener external nofollow" style="font-family:'ZhuZiAWan'!important;color:black" onclick="setFont('ZhuZiAWan')">筑紫A丸</a>
+  <a class="swf" id="swf_XiaWuWenKai" href="javascript:;" rel="noopener external nofollow" style="font-family:'XiaWuWenKai'!important;color:black" onclick="setFont('XiaWuWenKai')">霞鹜文楷</a>
   <a class="swf" id="swf_default" href="javascript:;" rel="noopener external nofollow" style="font-family:-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif;!important;color:black" onclick="setFont('default')">系统默认</a>
   </p>
   
