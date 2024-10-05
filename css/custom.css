@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'ZhuZiAWan';
+  font-family: ZhuZiAWan;
   font-display: swap;
   src: url('../font/ZhuZiAWan-2.ttf') format("truetype");
 }
 @font-face {
-  font-family: 'XiaWuWenKai';
+  font-family: XiaWuWenKai;
   font-display: swap;
   src: url('../font/XiaWuWenKai.ttf') format("truetype");
 }

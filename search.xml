@@ -1,127 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo博客0氪建站记录（上）</title>
-    <url>/2024/08/23/hexo1/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
-<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
-<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
-<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
-<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
-<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
-<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
-<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
-<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
-<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
-<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
-<p>打开它，然后后面的很多命令都使用bash输入。</p>
-<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
-<p>Hexo会自动安装依赖包。</p>
-<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
-<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
-<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>等待运行完成就好了。</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
-<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
-<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>这些就是常用命令。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
-<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
-<p>下一篇，我讲讲关于博客的美化。886！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>日常记录</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>建站</tag>
-        <tag>免费</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客0氪建站记录（下）</title>
-    <url>/2024/08/29/hexo3/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ol>
-<li><p>我还没说过我域名是怎么来的</p>
-</li>
-<li><p><del>建站不知道多少天了</del>，我的朋友圈竟然还长这样：<br><img src="https://source-admibrill.pages.dev/file/7bd9ae102aa38c6193185.png" alt=""><br>在看了清羽飞扬的<a href="https://blog.liushen.fun/posts/4dc716ec/">Friend-Circle-Lite:轻量友链朋友圈</a>之后，手痒了，决定搞一个。</p>
-</li>
-<li><p>还有，我还需要自建图床。于是使用<a href="https://github.com/cf-pages/Telegraph-Image">Telegraph Image</a>做了一个。之前用github搞过一个，可是听别人说，github禁止把仓库当图床，轻则删库，重则封号，仓库大于1GB就要人工审核，所以就用了这种方法。</p>
-</li>
-</ol>
-<h2 id="使用cloudflare-Pages部署Github-Pages的网站（？）"><a href="#使用cloudflare-Pages部署Github-Pages的网站（？）" class="headerlink" title="使用cloudflare Pages部署Github Pages的网站（？）"></a>使用cloudflare Pages部署Github Pages的网站（？）</h2><p>实在无法理解，之前那个<code>admibrill.github.io</code>蛮好，但过了几天就无法访问了（？）,但是我的一些朋友还能访问（？）,为了让自己能够访问，我把github上的项目仓库在cf上又部署了一次。</p>
-<p>首先，打开cloudflare,找到<code>Workers和Pages</code>然后进入，点击创建，创建一个部署。</p>
-<p><img src="https://source-admibrill.pages.dev/file/06561d555b0e66e7ef27c.png" alt=""></p>
-<p><img src="https://source-admibrill.pages.dev/file/9e300d58129a590f871dc.png" alt=""></p>
-<p>选择仓库，等程序跑完就可以了。</p>
-<h2 id="友链朋友圈"><a href="#友链朋友圈" class="headerlink" title="友链朋友圈"></a>友链朋友圈</h2><p>这一部分参考清羽飞扬的博文，<del>清羽的里面有很多碎碎念</del>，我精简一点。</p>
-<h3 id="json存储文件"><a href="#json存储文件" class="headerlink" title=".json存储文件"></a>.json存储文件</h3><p>这个文件用于记录朋友圈里会显示的友站。</p>
-<p>我们的友链有很多，我们不能每次改了友链都要改这个json文件。于是清羽飞扬提供了生成.json文件的JavaScript：</p>
-<p>在<code>[blogroot]</code>新建文件<code>link.js</code>，写入如下内容：（感谢代码）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">YML</span> = <span class="built_in">require</span>(<span class="string">&#x27;yamljs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> blacklist = [<span class="string">&quot;友站名称1&quot;</span>, <span class="string">&quot;友站名称2&quot;</span>, <span class="string">&quot;友站名称3&quot;</span>]; <span class="comment">// 由于某种原因，不想订阅的列表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> friends = [],</span><br><span class="line">    data_f = <span class="variable constant_">YML</span>.<span class="title function_">parse</span>(fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;source/_data/link.yml&#x27;</span>).<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="regexp">/(?&lt;=rss:)\s*\n/g</span>, <span class="string">&#x27; &quot;&quot;\n&#x27;</span>));</span><br><span class="line"></span><br><span class="line">data_f.<span class="title function_">forEach</span>(<span class="function">(<span class="params">entry, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> lastIndex = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; lastIndex) &#123;</span><br><span class="line">        <span class="keyword">const</span> filteredLinkList = entry.<span class="property">link_list</span>.<span class="title function_">filter</span>(<span class="function"><span class="params">linkItem</span> =&gt;</span> !blacklist.<span class="title function_">includes</span>(linkItem.<span class="property">name</span>));</span><br><span class="line">        friends = friends.<span class="title function_">concat</span>(filteredLinkList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据规定的格式构建 JSON 数据</span></span><br><span class="line"><span class="keyword">const</span> friendData = &#123;</span><br><span class="line">    <span class="attr">friends</span>: friends.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> [item.<span class="property">name</span>, item.<span class="property">link</span>, item.<span class="property">avatar</span>];</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 JSON 对象转换为字符串</span></span><br><span class="line"><span class="keyword">const</span> friendJSON = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(friendData, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入 friend.json 文件</span></span><br><span class="line">fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;./source/friend.json&#x27;</span>, friendJSON);</span><br><span class="line"><span class="comment">//在控制台提示</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;friend.json 文件已生成。&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>然后我们每次更新博客，就得多加一条，保证没有友链漏掉：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node link.js;..... <span class="comment">#...为其他指令</span></span><br></pre></td></tr></table></figure>
-<p><strong>现在就更新一次，确保friend.json上传到了网站里！</strong></p>
-<h3 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h3><p>首先，前往清羽的仓库<a href="https://github.com/willow-god/Friend-Circle-Lite">willow-god/Friend-Circle-Lite: 🐱一个精简版，无后端，且仅利用github action运行的精简版友链朋友圈程序，兼容fc的json格式信息，同时支持推送友圈更新，支持他人订阅个人站点并在更新时发送邮箱推送</a>把仓库Fork复制到自己的账号下：</p>
-<p><img src="https://source-admibrill.pages.dev/file/0457a14794145a11dcbb8.png" alt=""></p>
-<p>然后到自己的账号里的这个仓库，找到<code>conf.yml</code></p>
-<p><img src="https://source-admibrill.pages.dev/file/16d2402b0ef56f0b5ce19.png" alt=""></p>
-<p>修改配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 爬虫相关配置</span></span><br><span class="line"><span class="comment"># 解释：使用request实现友链文章爬取，并放置到根目录的all.json下</span></span><br><span class="line"><span class="comment">#   enable:             是否启用爬虫</span></span><br><span class="line"><span class="comment">#   json_url:           请填写对应格式json的地址，仅支持网络地址</span></span><br><span class="line"><span class="comment">#   article_count:      请填写每个博客需要获取的最大文章数量</span></span><br><span class="line"><span class="comment">#   marge_result:       是否合并多个json文件，若为true则会合并指定网络地址和本地地址的json文件</span></span><br><span class="line"><span class="comment">#     enable:           是否启用合并功能，该功能提供与自部署的友链合并功能，可以解决服务器部分国外网站无法访问的问题</span></span><br><span class="line"><span class="comment">#     marge_json_path:  请填写网络地址的json文件，用于合并，不带空格！！！</span></span><br><span class="line"><span class="attr">spider_settings:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">json_url:</span> <span class="string">&quot;https://blog.qyadbr.top/friend.json&quot;</span> <span class="comment">########一定要改，不然是我的，改成&quot;自己的网站/friend.json&quot;</span></span><br><span class="line">  <span class="attr">article_count:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">merge_result:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">merge_json_url:</span> <span class="string">&quot;https://fc.liushen.fun&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮箱推送功能配置，暂未实现，等待后续开发</span></span><br><span class="line"><span class="comment"># 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个</span></span><br><span class="line"><span class="comment">#   enable:             是否启用邮箱推送功能</span></span><br><span class="line"><span class="comment">#   to_email:           收件人邮箱地址</span></span><br><span class="line"><span class="comment">#   subject:            邮件主题</span></span><br><span class="line"><span class="comment">#   body_template:      邮件正文的 HTML 模板文件</span></span><br><span class="line"><span class="attr">email_push:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span>   <span class="comment">########### 我不需要，就没有启用</span></span><br><span class="line">  <span class="attr">to_email:</span> <span class="string">recipient@example.com</span></span><br><span class="line">  <span class="attr">subject:</span> <span class="string">&quot;今天的 RSS 订阅更新&quot;</span></span><br><span class="line">  <span class="attr">body_template:</span> <span class="string">&quot;rss_template.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮箱issue订阅功能配置</span></span><br><span class="line"><span class="comment"># 解释：向在issue中提取的所有邮箱推送您网站中的更新，添加邮箱和删除邮箱均通过添加issue对应格式实现</span></span><br><span class="line"><span class="comment">#   enable:             是否启用邮箱推送功能</span></span><br><span class="line"><span class="comment">#   github_username:    GitHub 用户名，用于构建issue api地址</span></span><br><span class="line"><span class="comment">#   github_repo:        GitHub 仓库名，用于构建issue api地址</span></span><br><span class="line"><span class="comment">#   your_blog_url:      你的博客地址</span></span><br><span class="line"><span class="attr">rss_subscribe:</span></span><br><span class="line">  <span class="attr">enable:</span>  <span class="literal">false</span> <span class="comment">############ 我不需要，就没有启用</span></span><br><span class="line">  <span class="attr">github_username:</span> <span class="string">willow-god</span></span><br><span class="line">  <span class="attr">github_repo:</span> <span class="string">Friend-Circle-Lite</span></span><br><span class="line">  <span class="attr">your_blog_url:</span> <span class="string">https://blog.qyadbr.top/</span></span><br><span class="line">  <span class="attr">email_template:</span> <span class="string">&quot;./rss_subscribe/email_template.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SMTP 配置</span></span><br><span class="line"><span class="comment"># 解释：使用其中的相关配置实现上面两种功能，若无推送要求可以不配置，请将以上两个配置置为false</span></span><br><span class="line"><span class="comment">#   email:              发件人邮箱地址</span></span><br><span class="line"><span class="comment">#   server：            SMTP 服务器地址</span></span><br><span class="line"><span class="comment">#   port：              SMTP 端口号</span></span><br><span class="line"><span class="comment">#   use_tls：           是否使用 tls 加密</span></span><br><span class="line"><span class="attr">smtp:</span></span><br><span class="line">  <span class="attr">email:</span> <span class="number">3162475700</span><span class="string">@qq.com</span></span><br><span class="line">  <span class="attr">server:</span> <span class="string">smtp.qq.com</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">587</span></span><br><span class="line">  <span class="attr">use_tls:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://source-admibrill.pages.dev/file/8901ef3ed5250a9a41ada.png" alt=""></p>
-<h3 id="第一次运行测试"><a href="#第一次运行测试" class="headerlink" title="第一次运行测试"></a>第一次运行测试</h3><p>按图示操作，运行workflow：</p>
-<p><img src="https://source-admibrill.pages.dev/file/8babe6f6beed7e37405da.png" alt=""></p>
-<p>然后我们点开一条记录，查看<code>Check RSS feeds</code></p>
-<p><img src="https://source-admibrill.pages.dev/file/3b9b57ffb17f3a68af552.png" alt=""></p>
-<p>有这样的输出即为正常。</p>
-<h3 id="使用cloudflare托管后端"><a href="#使用cloudflare托管后端" class="headerlink" title="使用cloudflare托管后端"></a>使用cloudflare托管后端</h3><p>按照前面cloudflare部署的方法，部署一个后端地址。这个地址将会被我们当做后端。</p>
-<h3 id="前端部署"><a href="#前端部署" class="headerlink" title="前端部署"></a>前端部署</h3><p>在<code>Blogroot/source/fcircle/index.md</code>中添加如下内容（其实就是加html）：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;friend-circle-lite-root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="title class_">UserConfig</span> === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> <span class="title class_">UserConfig</span> = &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 填写你的fc Lite地址</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">private_api_url</span>: <span class="string">&#x27;https://fc.liushen.fun/&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 点击加载更多时，一次最多加载几篇文章，默认20</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">page_turning_number</span>: <span class="number">20</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 头像加载失败时，默认头像地址</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">error_img</span>: <span class="string">&#x27;https://pic.imgdb.cn/item/6695daa4d9c307b7e953ee3d.jpg&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>ok,朋友圈功能到此完成。</p>
-<h2 id="Telegraph-Image图床"><a href="#Telegraph-Image图床" class="headerlink" title="Telegraph Image图床"></a>Telegraph Image图床</h2><p>在写博客的时候，常常需要图片<del>（比如说刚才那个部分就弄了n次图片）</del>。</p>
-<p>为了方便自己，自己建了个图床。</p>
-<h3 id="部署图床"><a href="#部署图床" class="headerlink" title="部署图床"></a>部署图床</h3><p>首先还是fork仓库（不需要图了吧），<a href="https://github.com/cf-pages/Telegraph-Image">cf-pages/Telegraph-Image: Image Hosting solution, Flickr/imgur alternative, make it easy for users to share their images. Using Cloudflare Pages and Telegraph. (github.com)</a>。</p>
-<p>然后把把仓库部署的cloudflare上（不需要图了吧）。</p>
-<h3 id="使用PicGo方便Typora上传图片"><a href="#使用PicGo方便Typora上传图片" class="headerlink" title="使用PicGo方便Typora上传图片"></a>使用PicGo方便Typora上传图片</h3><p>然后下载安装PicGo，进入插件，安装插件telegraph-image-uploader</p>
-<p>进入图床设置</p>
-<p><img src="https://source-admibrill.pages.dev/file/74f1f956e5cb8d939db46.png" alt="image-20240829221408459"></p>
-<p>设置URL为你的图床地址，就可以使用PicGo上传啦！</p>
-<p>接着使用Markdown编辑器Typora:</p>
-<p><img src="https://source-admibrill.pages.dev/file/6ac87f110fed6c040f5e5.png" alt=""></p>
-<p>现在截图复制粘贴到Typora里就可以上传了。</p>
-<h3 id="使用Python来删除Typora创建的临时图片文件"><a href="#使用Python来删除Typora创建的临时图片文件" class="headerlink" title="使用Python来删除Typora创建的临时图片文件"></a>使用Python来删除Typora创建的临时图片文件</h3><p>但是有个问题：我们粘进Typora的文件，会先放到<code>C:\Users\&lt;username&gt;\AppData\Roaming\Typora\typora-user-images</code>这个文件夹里，久而久之，文件会越来越多，Typora却不自己删除。于是我决定用Python来删除这些文件。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>在任意位置新建一个<code>delete.py</code>，写入如下代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入库，放心，都是Python标准库，不用pip</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 编辑配置</span></span><br><span class="line">username=<span class="string">&#x27;乐乐&#x27;</span>   <span class="comment">#这是我电脑用户名，需要改成自己的</span></span><br><span class="line">path=<span class="string">&#x27;C:\\Users\\&#x27;</span>+username+<span class="string">&#x27;\\AppData\\Roaming\\Typora\\typora-user-images\\&#x27;</span>  <span class="comment">#检查的目录</span></span><br><span class="line">checktime=<span class="number">5</span> <span class="comment">#每次检查新文件和删除文件的间隔时间</span></span><br><span class="line">deltime=<span class="number">50</span>  <span class="comment">#每个文件存在大于多少秒就要删除，足以等待图片上传完</span></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">    listd=os.listdir(path)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listd:</span><br><span class="line">        <span class="keyword">if</span> time.time()-os.path.getctime(path+i)&gt;deltime:</span><br><span class="line">            os.remove(path+i)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;removed &#x27;</span>+path+i)</span><br><span class="line">    time.sleep(checktime)</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此hexo建站教程就完结了，886！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>日常记录</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>建站</tag>
-        <tag>免费</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客0氪建站记录（中）</title>
     <url>/2024/08/25/hexo2/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>上次，我们完成了Hexo框架的搭建。这次，我讲如何美化博客。</p>
@@ -255,6 +134,127 @@
         <tag>Markdown</tag>
         <tag>测试</tag>
         <tag>外挂标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客0氪建站记录（上）</title>
+    <url>/2024/08/23/hexo1/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
+<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
+<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
+<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
+<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
+<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
+<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
+<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
+<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
+<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
+<p>打开它，然后后面的很多命令都使用bash输入。</p>
+<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
+<p>Hexo会自动安装依赖包。</p>
+<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
+<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
+<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>等待运行完成就好了。</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
+<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
+<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
+<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>这些就是常用命令。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
+<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
+<p>下一篇，我讲讲关于博客的美化。886！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>日常记录</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>建站</tag>
+        <tag>免费</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客0氪建站记录（下）</title>
+    <url>/2024/08/29/hexo3/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ol>
+<li><p>我还没说过我域名是怎么来的</p>
+</li>
+<li><p><del>建站不知道多少天了</del>，我的朋友圈竟然还长这样：<br><img src="https://source-admibrill.pages.dev/file/7bd9ae102aa38c6193185.png" alt=""><br>在看了清羽飞扬的<a href="https://blog.liushen.fun/posts/4dc716ec/">Friend-Circle-Lite:轻量友链朋友圈</a>之后，手痒了，决定搞一个。</p>
+</li>
+<li><p>还有，我还需要自建图床。于是使用<a href="https://github.com/cf-pages/Telegraph-Image">Telegraph Image</a>做了一个。之前用github搞过一个，可是听别人说，github禁止把仓库当图床，轻则删库，重则封号，仓库大于1GB就要人工审核，所以就用了这种方法。</p>
+</li>
+</ol>
+<h2 id="使用cloudflare-Pages部署Github-Pages的网站（？）"><a href="#使用cloudflare-Pages部署Github-Pages的网站（？）" class="headerlink" title="使用cloudflare Pages部署Github Pages的网站（？）"></a>使用cloudflare Pages部署Github Pages的网站（？）</h2><p>实在无法理解，之前那个<code>admibrill.github.io</code>蛮好，但过了几天就无法访问了（？）,但是我的一些朋友还能访问（？）,为了让自己能够访问，我把github上的项目仓库在cf上又部署了一次。</p>
+<p>首先，打开cloudflare,找到<code>Workers和Pages</code>然后进入，点击创建，创建一个部署。</p>
+<p><img src="https://source-admibrill.pages.dev/file/06561d555b0e66e7ef27c.png" alt=""></p>
+<p><img src="https://source-admibrill.pages.dev/file/9e300d58129a590f871dc.png" alt=""></p>
+<p>选择仓库，等程序跑完就可以了。</p>
+<h2 id="友链朋友圈"><a href="#友链朋友圈" class="headerlink" title="友链朋友圈"></a>友链朋友圈</h2><p>这一部分参考清羽飞扬的博文，<del>清羽的里面有很多碎碎念</del>，我精简一点。</p>
+<h3 id="json存储文件"><a href="#json存储文件" class="headerlink" title=".json存储文件"></a>.json存储文件</h3><p>这个文件用于记录朋友圈里会显示的友站。</p>
+<p>我们的友链有很多，我们不能每次改了友链都要改这个json文件。于是清羽飞扬提供了生成.json文件的JavaScript：</p>
+<p>在<code>[blogroot]</code>新建文件<code>link.js</code>，写入如下内容：（感谢代码）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">YML</span> = <span class="built_in">require</span>(<span class="string">&#x27;yamljs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> blacklist = [<span class="string">&quot;友站名称1&quot;</span>, <span class="string">&quot;友站名称2&quot;</span>, <span class="string">&quot;友站名称3&quot;</span>]; <span class="comment">// 由于某种原因，不想订阅的列表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> friends = [],</span><br><span class="line">    data_f = <span class="variable constant_">YML</span>.<span class="title function_">parse</span>(fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;source/_data/link.yml&#x27;</span>).<span class="title function_">toString</span>().<span class="title function_">replace</span>(<span class="regexp">/(?&lt;=rss:)\s*\n/g</span>, <span class="string">&#x27; &quot;&quot;\n&#x27;</span>));</span><br><span class="line"></span><br><span class="line">data_f.<span class="title function_">forEach</span>(<span class="function">(<span class="params">entry, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> lastIndex = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; lastIndex) &#123;</span><br><span class="line">        <span class="keyword">const</span> filteredLinkList = entry.<span class="property">link_list</span>.<span class="title function_">filter</span>(<span class="function"><span class="params">linkItem</span> =&gt;</span> !blacklist.<span class="title function_">includes</span>(linkItem.<span class="property">name</span>));</span><br><span class="line">        friends = friends.<span class="title function_">concat</span>(filteredLinkList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据规定的格式构建 JSON 数据</span></span><br><span class="line"><span class="keyword">const</span> friendData = &#123;</span><br><span class="line">    <span class="attr">friends</span>: friends.<span class="title function_">map</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> [item.<span class="property">name</span>, item.<span class="property">link</span>, item.<span class="property">avatar</span>];</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将 JSON 对象转换为字符串</span></span><br><span class="line"><span class="keyword">const</span> friendJSON = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(friendData, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入 friend.json 文件</span></span><br><span class="line">fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;./source/friend.json&#x27;</span>, friendJSON);</span><br><span class="line"><span class="comment">//在控制台提示</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;friend.json 文件已生成。&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>然后我们每次更新博客，就得多加一条，保证没有友链漏掉：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node link.js;..... <span class="comment">#...为其他指令</span></span><br></pre></td></tr></table></figure>
+<p><strong>现在就更新一次，确保friend.json上传到了网站里！</strong></p>
+<h3 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h3><p>首先，前往清羽的仓库<a href="https://github.com/willow-god/Friend-Circle-Lite">willow-god/Friend-Circle-Lite: 🐱一个精简版，无后端，且仅利用github action运行的精简版友链朋友圈程序，兼容fc的json格式信息，同时支持推送友圈更新，支持他人订阅个人站点并在更新时发送邮箱推送</a>把仓库Fork复制到自己的账号下：</p>
+<p><img src="https://source-admibrill.pages.dev/file/0457a14794145a11dcbb8.png" alt=""></p>
+<p>然后到自己的账号里的这个仓库，找到<code>conf.yml</code></p>
+<p><img src="https://source-admibrill.pages.dev/file/16d2402b0ef56f0b5ce19.png" alt=""></p>
+<p>修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 爬虫相关配置</span></span><br><span class="line"><span class="comment"># 解释：使用request实现友链文章爬取，并放置到根目录的all.json下</span></span><br><span class="line"><span class="comment">#   enable:             是否启用爬虫</span></span><br><span class="line"><span class="comment">#   json_url:           请填写对应格式json的地址，仅支持网络地址</span></span><br><span class="line"><span class="comment">#   article_count:      请填写每个博客需要获取的最大文章数量</span></span><br><span class="line"><span class="comment">#   marge_result:       是否合并多个json文件，若为true则会合并指定网络地址和本地地址的json文件</span></span><br><span class="line"><span class="comment">#     enable:           是否启用合并功能，该功能提供与自部署的友链合并功能，可以解决服务器部分国外网站无法访问的问题</span></span><br><span class="line"><span class="comment">#     marge_json_path:  请填写网络地址的json文件，用于合并，不带空格！！！</span></span><br><span class="line"><span class="attr">spider_settings:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">json_url:</span> <span class="string">&quot;https://blog.qyadbr.top/friend.json&quot;</span> <span class="comment">########一定要改，不然是我的，改成&quot;自己的网站/friend.json&quot;</span></span><br><span class="line">  <span class="attr">article_count:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">merge_result:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">merge_json_url:</span> <span class="string">&quot;https://fc.liushen.fun&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮箱推送功能配置，暂未实现，等待后续开发</span></span><br><span class="line"><span class="comment"># 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个</span></span><br><span class="line"><span class="comment">#   enable:             是否启用邮箱推送功能</span></span><br><span class="line"><span class="comment">#   to_email:           收件人邮箱地址</span></span><br><span class="line"><span class="comment">#   subject:            邮件主题</span></span><br><span class="line"><span class="comment">#   body_template:      邮件正文的 HTML 模板文件</span></span><br><span class="line"><span class="attr">email_push:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span>   <span class="comment">########### 我不需要，就没有启用</span></span><br><span class="line">  <span class="attr">to_email:</span> <span class="string">recipient@example.com</span></span><br><span class="line">  <span class="attr">subject:</span> <span class="string">&quot;今天的 RSS 订阅更新&quot;</span></span><br><span class="line">  <span class="attr">body_template:</span> <span class="string">&quot;rss_template.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮箱issue订阅功能配置</span></span><br><span class="line"><span class="comment"># 解释：向在issue中提取的所有邮箱推送您网站中的更新，添加邮箱和删除邮箱均通过添加issue对应格式实现</span></span><br><span class="line"><span class="comment">#   enable:             是否启用邮箱推送功能</span></span><br><span class="line"><span class="comment">#   github_username:    GitHub 用户名，用于构建issue api地址</span></span><br><span class="line"><span class="comment">#   github_repo:        GitHub 仓库名，用于构建issue api地址</span></span><br><span class="line"><span class="comment">#   your_blog_url:      你的博客地址</span></span><br><span class="line"><span class="attr">rss_subscribe:</span></span><br><span class="line">  <span class="attr">enable:</span>  <span class="literal">false</span> <span class="comment">############ 我不需要，就没有启用</span></span><br><span class="line">  <span class="attr">github_username:</span> <span class="string">willow-god</span></span><br><span class="line">  <span class="attr">github_repo:</span> <span class="string">Friend-Circle-Lite</span></span><br><span class="line">  <span class="attr">your_blog_url:</span> <span class="string">https://blog.qyadbr.top/</span></span><br><span class="line">  <span class="attr">email_template:</span> <span class="string">&quot;./rss_subscribe/email_template.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SMTP 配置</span></span><br><span class="line"><span class="comment"># 解释：使用其中的相关配置实现上面两种功能，若无推送要求可以不配置，请将以上两个配置置为false</span></span><br><span class="line"><span class="comment">#   email:              发件人邮箱地址</span></span><br><span class="line"><span class="comment">#   server：            SMTP 服务器地址</span></span><br><span class="line"><span class="comment">#   port：              SMTP 端口号</span></span><br><span class="line"><span class="comment">#   use_tls：           是否使用 tls 加密</span></span><br><span class="line"><span class="attr">smtp:</span></span><br><span class="line">  <span class="attr">email:</span> <span class="number">3162475700</span><span class="string">@qq.com</span></span><br><span class="line">  <span class="attr">server:</span> <span class="string">smtp.qq.com</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">587</span></span><br><span class="line">  <span class="attr">use_tls:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://source-admibrill.pages.dev/file/8901ef3ed5250a9a41ada.png" alt=""></p>
+<h3 id="第一次运行测试"><a href="#第一次运行测试" class="headerlink" title="第一次运行测试"></a>第一次运行测试</h3><p>按图示操作，运行workflow：</p>
+<p><img src="https://source-admibrill.pages.dev/file/8babe6f6beed7e37405da.png" alt=""></p>
+<p>然后我们点开一条记录，查看<code>Check RSS feeds</code></p>
+<p><img src="https://source-admibrill.pages.dev/file/3b9b57ffb17f3a68af552.png" alt=""></p>
+<p>有这样的输出即为正常。</p>
+<h3 id="使用cloudflare托管后端"><a href="#使用cloudflare托管后端" class="headerlink" title="使用cloudflare托管后端"></a>使用cloudflare托管后端</h3><p>按照前面cloudflare部署的方法，部署一个后端地址。这个地址将会被我们当做后端。</p>
+<h3 id="前端部署"><a href="#前端部署" class="headerlink" title="前端部署"></a>前端部署</h3><p>在<code>Blogroot/source/fcircle/index.md</code>中添加如下内容（其实就是加html）：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;friend-circle-lite-root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="title class_">UserConfig</span> === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> <span class="title class_">UserConfig</span> = &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 填写你的fc Lite地址</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">private_api_url</span>: <span class="string">&#x27;https://fc.liushen.fun/&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 点击加载更多时，一次最多加载几篇文章，默认20</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">page_turning_number</span>: <span class="number">20</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 头像加载失败时，默认头像地址</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">error_img</span>: <span class="string">&#x27;https://pic.imgdb.cn/item/6695daa4d9c307b7e953ee3d.jpg&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ok,朋友圈功能到此完成。</p>
+<h2 id="Telegraph-Image图床"><a href="#Telegraph-Image图床" class="headerlink" title="Telegraph Image图床"></a>Telegraph Image图床</h2><p>在写博客的时候，常常需要图片<del>（比如说刚才那个部分就弄了n次图片）</del>。</p>
+<p>为了方便自己，自己建了个图床。</p>
+<h3 id="部署图床"><a href="#部署图床" class="headerlink" title="部署图床"></a>部署图床</h3><p>首先还是fork仓库（不需要图了吧），<a href="https://github.com/cf-pages/Telegraph-Image">cf-pages/Telegraph-Image: Image Hosting solution, Flickr/imgur alternative, make it easy for users to share their images. Using Cloudflare Pages and Telegraph. (github.com)</a>。</p>
+<p>然后把把仓库部署的cloudflare上（不需要图了吧）。</p>
+<h3 id="使用PicGo方便Typora上传图片"><a href="#使用PicGo方便Typora上传图片" class="headerlink" title="使用PicGo方便Typora上传图片"></a>使用PicGo方便Typora上传图片</h3><p>然后下载安装PicGo，进入插件，安装插件telegraph-image-uploader</p>
+<p>进入图床设置</p>
+<p><img src="https://source-admibrill.pages.dev/file/74f1f956e5cb8d939db46.png" alt="image-20240829221408459"></p>
+<p>设置URL为你的图床地址，就可以使用PicGo上传啦！</p>
+<p>接着使用Markdown编辑器Typora:</p>
+<p><img src="https://source-admibrill.pages.dev/file/6ac87f110fed6c040f5e5.png" alt=""></p>
+<p>现在截图复制粘贴到Typora里就可以上传了。</p>
+<h3 id="使用Python来删除Typora创建的临时图片文件"><a href="#使用Python来删除Typora创建的临时图片文件" class="headerlink" title="使用Python来删除Typora创建的临时图片文件"></a>使用Python来删除Typora创建的临时图片文件</h3><p>但是有个问题：我们粘进Typora的文件，会先放到<code>C:\Users\&lt;username&gt;\AppData\Roaming\Typora\typora-user-images</code>这个文件夹里，久而久之，文件会越来越多，Typora却不自己删除。于是我决定用Python来删除这些文件。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>在任意位置新建一个<code>delete.py</code>，写入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入库，放心，都是Python标准库，不用pip</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 编辑配置</span></span><br><span class="line">username=<span class="string">&#x27;乐乐&#x27;</span>   <span class="comment">#这是我电脑用户名，需要改成自己的</span></span><br><span class="line">path=<span class="string">&#x27;C:\\Users\\&#x27;</span>+username+<span class="string">&#x27;\\AppData\\Roaming\\Typora\\typora-user-images\\&#x27;</span>  <span class="comment">#检查的目录</span></span><br><span class="line">checktime=<span class="number">5</span> <span class="comment">#每次检查新文件和删除文件的间隔时间</span></span><br><span class="line">deltime=<span class="number">50</span>  <span class="comment">#每个文件存在大于多少秒就要删除，足以等待图片上传完</span></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">    listd=os.listdir(path)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listd:</span><br><span class="line">        <span class="keyword">if</span> time.time()-os.path.getctime(path+i)&gt;deltime:</span><br><span class="line">            os.remove(path+i)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;removed &#x27;</span>+path+i)</span><br><span class="line">    time.sleep(checktime)</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此hexo建站教程就完结了，886！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>日常记录</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>建站</tag>
+        <tag>免费</tag>
       </tags>
   </entry>
   <entry>
