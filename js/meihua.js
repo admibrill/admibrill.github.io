@@ -68,7 +68,7 @@ function setFontBorder() {
 
 // 设置主题色
 if (localStorage.getItem("themeColor") == undefined) {
-    localStorage.setItem("themeColor", "green");
+    localStorage.setItem("themeColor", "heoblue");
 }
 setColor(localStorage.getItem("themeColor"));
 function setColor(c) {
@@ -201,7 +201,7 @@ function setBlur() {
 }
 
 // 切换自定义颜色
-var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#F4D88A';
+var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#66CCFF';
 function changeBgColor() {
     changeBg(document.querySelector("#colors").value);
 }
@@ -233,7 +233,7 @@ function changeBg(s) {
         defineColor = s;
     } else {
         bg.style.backgroundImage = s
-        defineColor = '#F4D88A';
+        defineColor = '#66CCFF';
     };
     localStorage.setItem("blogbg", s);
     localStorage.setItem("bing", "false");
@@ -529,7 +529,7 @@ function createWinbox() {
   <h3>7. 自定义背景</h3>
   设置自定义背景 
   <p><center>
-  <input type="text" id="pic-link" size="70%" maxlength="1000" placeholder="请输入有效的图片链接，如 https://source.fomal.cc/img/home_bg.webp">
+  <input type="text" id="pic-link" size="70%" maxlength="1000" placeholder="请输入有效的图片链接">
   </center></p>
   <br>
   <p><center>
