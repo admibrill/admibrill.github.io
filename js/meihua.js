@@ -201,7 +201,7 @@ function setBlur() {
 }
 
 // 切换自定义颜色
-var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#66CCFF';
+var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#008BD1';
 function changeBgColor() {
     changeBg(document.querySelector("#colors").value);
 }
@@ -224,7 +224,7 @@ if (localStorage.getItem("blogbg") != undefined) {
     //     --mobileday-bg: url(xxx);
     //     --mobilenight-bg: url(xxx);
     // }`;
-    changeBg('#66CCFF')
+    changeBg('#008BD1')
 }
 function changeBg(s) {
     let bg = document.getElementById("web_bg");
@@ -234,7 +234,7 @@ function changeBg(s) {
         defineColor = s;
     } else {
         bg.style.backgroundImage = s
-        defineColor = '#66CCFF';
+        defineColor = '#008BD1';
     };
     localStorage.setItem("blogbg", s);
     localStorage.setItem("bing", "false");
