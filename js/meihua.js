@@ -68,7 +68,7 @@ function setFontBorder() {
 
 // 设置主题色
 if (localStorage.getItem("themeColor") == undefined) {
-    localStorage.setItem("themeColor", "heoblue");
+    localStorage.setItem("themeColor", "blue");
 }
 setColor(localStorage.getItem("themeColor"));
 function setColor(c) {
@@ -218,12 +218,13 @@ if (localStorage.getItem("blogbg") != undefined) {
     changeBg(curBg);
 } else {
     // 替换你自己的默认背景
-    document.getElementById("defineBg").innerText = `:root{
-        --default-bg: url(xxx);
-        --darkmode-bg:url(xxx);
-        --mobileday-bg: url(xxx);
-        --mobilenight-bg: url(xxx);
-    }`;
+    // document.getElementById("defineBg").innerText = `:root{
+    //     --default-bg: url(xxx);
+    //     --darkmode-bg:url(xxx);
+    //     --mobileday-bg: url(xxx);
+    //     --mobilenight-bg: url(xxx);
+    // }`;
+    changeBg('#66CCFF')
 }
 function changeBg(s) {
     let bg = document.getElementById("web_bg");
@@ -456,18 +457,19 @@ function createWinbox() {
   </p>
   
   <h2>三、主题色设置</h2>
-  <div class="content" style="display:flex"><input type="radio" id="red" name="colors" value=" "
-          onclick="setColor('red')"><input type="radio" id="orange" name="colors" value=" "
-          onclick="setColor('orange')"><input type="radio" id="yellow" name="colors" value=" "
-          onclick="setColor('yellow')"><input type="radio" id="green" name="colors" value=" "
-          onclick="setColor('green')"><input type="radio" id="blue" name="colors" value=" "
-          onclick="setColor('blue')"><input type="radio" id="heoblue" name="colors" value=" "
-          onclick="setColor('heoblue')"><input type="radio" id="darkblue" name="colors" value=" "
-          onclick="setColor('darkblue')"><input type="radio" id="purple" name="colors" value=" "
-          onclick="setColor('purple')"><input type="radio" id="pink" name="colors" value=" "
-          onclick="setColor('pink')" checked="checked"><input type="radio" id="black" name="colors" value=" "
-          onclick="setColor('black')"><input type="radio" id="blackgray" name="colors" value=" "
-          onclick="setColor('blackgray')"></div>
+  <div class="content" style="display:flex">
+    <input type="radio" id="red" name="colors" value=" "onclick="setColor('red')">
+    <input type="radio" id="orange" name="colors" value=" "onclick="setColor('orange')">
+    <input type="radio" id="yellow" name="colors" value=" "onclick="setColor('yellow')">
+    <input type="radio" id="green" name="colors" value=" "onclick="setColor('green')">
+    <input type="radio" id="blue" name="colors" value=" "onclick="setColor('blue')">
+    <input type="radio" id="heoblue" name="colors" value=" "onclick="setColor('heoblue')">
+    <input type="radio" id="darkblue" name="colors" value=" "onclick="setColor('darkblue')">
+    <input type="radio" id="purple" name="colors" value=" "onclick="setColor('purple')">
+    <input type="radio" id="pink" name="colors" value=" "onclick="setColor('pink')" checked="checked">
+    <input type="radio" id="black" name="colors" value=" "onclick="setColor('black')">
+    <input type="radio" id="blackgray" name="colors" value=" "onclick="setColor('blackgray')">
+  </div>
   
   <h2>四、背景设置</h2>
   <center><button onclick="resetBg()" style="background:var(--theme-color);display:block;width:35%;padding:15px 0;border-radius:30px;color:white;"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;恢复默认背景</button></center>

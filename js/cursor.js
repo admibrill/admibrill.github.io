@@ -54,7 +54,7 @@ class Cursor {
                 this.pt.push(el[i].outerHTML);
         // 为了防止出现黑色鼠标的情况，优先在这里对主题色进行赋值
         if (localStorage.getItem("themeColor") == undefined) {
-            localStorage.setItem("themeColor", "green");
+            localStorage.setItem("themeColor", "blue");
         }
         var colorVal = map.get(localStorage.getItem("themeColor"));
         document.body.appendChild((this.scr = document.createElement("style")));
