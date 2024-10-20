@@ -55,37 +55,6 @@
       </tags>
   </entry>
   <entry>
-    <title>自己动手写二维物理引擎（零）</title>
-    <url>/2024/09/28/hexo5/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="为什么要写物理引擎"><a href="#为什么要写物理引擎" class="headerlink" title="为什么要写物理引擎"></a>为什么要写物理引擎</h2><p>其实在很久以前就用过别人的物理引擎了，可是这些引擎的功能不满足我的需求，比如说不支持流体的运动，以及实现把一个物体切割成两部分等，还可以制造燃烧，爆炸等效果，别人的物理引擎都没有。所以我决定自己先用python写一款物理引擎，后面再写成JavaScript来实现网页上的效果。</p>
-<p>本文的编号是零，意思是这是写物理引擎前的准备工作。</p>
-<h2 id="物理引擎的结构"><a href="#物理引擎的结构" class="headerlink" title="物理引擎的结构"></a>物理引擎的结构</h2><p>组成物理引擎的是窗口（Window），力（Force），物体（Object）和效果（Effect）。</p>
-<p>窗口就是一个物理场，它记录了很多物理常量（如重力加速度等）</p>
-<p>同时，它也是物体的载体，可以控制物体是否能跑到窗口外面去。</p>
-<p>力可以使物体运动。会考虑重力、引力、浮力等。</p>
-<p>物体分为三种：刚体（solid）、流体（liquid）、和关节（joint）</p>
-<blockquote>
-<p>刚体是指在运动中和受力作用后，形状和大小不变，而且内部各点的相对位置不变的物体。</p>
-</blockquote>
-<p>刚体可以分为线段（segment）球体（其实就是一个圆，circle）和多边形（polygon）。</p>
-<p>每个刚体都会考虑碰撞。</p>
-<p>流体分为牛顿流体和非牛顿流体。</p>
-<p>关节可以约束两个刚体，可以伸缩。</p>
-<p>效果则包含劈裂、燃烧等</p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h2><p>在同一个目录下新建<code>physics.py</code>和<code>demo.py</code>。<code>physics.py</code>使我们的物理引擎。<code>demo.py</code>则用来测试</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>physics.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> pygame.<span class="built_in">locals</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">pygame.init()</span><br><span class="line"><span class="comment"># pygame.draw.circle(window, (0, 0, 255),[300,300], 170, 0)</span></span><br><span class="line"><span class="comment"># pygame.draw.polygon(window, (255,0,0), [[300,300],[100,400],[100,300]])</span></span><br><span class="line"><span class="comment"># pygame.draw.line(window, (0, 0, 0), [100, 300], [500, 300], 5)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Window</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,width,height,caption</span>):</span><br><span class="line">        <span class="variable language_">self</span>.width=width</span><br><span class="line">        <span class="variable language_">self</span>.height=height</span><br><span class="line">        <span class="variable language_">self</span>.caption=caption</span><br><span class="line">        <span class="variable language_">self</span>.surface=pygame.display.set_mode((<span class="variable language_">self</span>.width,<span class="variable language_">self</span>.height))</span><br><span class="line">        <span class="variable language_">self</span>.bodies=[]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        pygame.display.set_caption(<span class="variable language_">self</span>.caption)</span><br><span class="line">        flag=<span class="literal">True</span></span><br><span class="line">        <span class="keyword">while</span> flag:</span><br><span class="line">            pygame.display.update()</span><br><span class="line">            <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():</span><br><span class="line">                <span class="keyword">if</span> event.<span class="built_in">type</span> == QUIT:</span><br><span class="line">                    pygame.quit()</span><br><span class="line">                    flag=<span class="literal">False</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Object</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solid</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Liquid</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Joint</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>demo.py</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> physics</span><br><span class="line">window1=physics.Window(<span class="number">1000</span>,<span class="number">600</span>,<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line">window1.run()</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>物理引擎</category>
-      </categories>
-      <tags>
-        <tag>-物理引擎</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客0氪建站记录（下）</title>
     <url>/2024/08/29/hexo3/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><ol>
@@ -140,6 +109,61 @@
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>在任意位置新建一个<code>delete.py</code>，写入如下代码：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入库，放心，都是Python标准库，不用pip</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 编辑配置</span></span><br><span class="line">username=<span class="string">&#x27;乐乐&#x27;</span>   <span class="comment">#这是我电脑用户名，需要改成自己的</span></span><br><span class="line">path=<span class="string">&#x27;C:\\Users\\&#x27;</span>+username+<span class="string">&#x27;\\AppData\\Roaming\\Typora\\typora-user-images\\&#x27;</span>  <span class="comment">#检查的目录</span></span><br><span class="line">checktime=<span class="number">5</span> <span class="comment">#每次检查新文件和删除文件的间隔时间</span></span><br><span class="line">deltime=<span class="number">50</span>  <span class="comment">#每个文件存在大于多少秒就要删除，足以等待图片上传完</span></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">    listd=os.listdir(path)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> listd:</span><br><span class="line">        <span class="keyword">if</span> time.time()-os.path.getctime(path+i)&gt;deltime:</span><br><span class="line">            os.remove(path+i)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;removed &#x27;</span>+path+i)</span><br><span class="line">    time.sleep(checktime)</span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此hexo建站教程就完结了，886！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>日常记录</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>建站</tag>
+        <tag>免费</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客0氪建站记录（上）</title>
+    <url>/2024/08/23/hexo1/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
+<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
+<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
+<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
+<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
+<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
+<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
+<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
+<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
+<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
+<p>打开它，然后后面的很多命令都使用bash输入。</p>
+<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
+<p>Hexo会自动安装依赖包。</p>
+<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
+<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
+<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>等待运行完成就好了。</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
+<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
+<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
+<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>这些就是常用命令。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
+<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
+<p>下一篇，我讲讲关于博客的美化。886！</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -234,58 +258,34 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客0氪建站记录（上）</title>
-    <url>/2024/08/23/hexo1/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>大家好，我叫Admibrill，<del>建站十多天了，没有发过一次文章</del>。</p>
-<p>第一篇文章，我决定记录一下我个人的建站历程。</p>
-<h2 id="各种环境依赖的安装"><a href="#各种环境依赖的安装" class="headerlink" title="各种环境依赖的安装"></a>各种环境依赖的安装</h2><p>跟着<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>，我开始了建站。 </p>
-<h3 id="Github账号和仓库"><a href="#Github账号和仓库" class="headerlink" title="Github账号和仓库"></a>Github账号和仓库</h3><p>我本来就有一个github的账号，于是建了个仓库叫<code>admibrill.github.io</code>。</p>
-<p>使用<code>Github Pages</code>的源文件仓库要命名为<code>&lt;username&gt;.github.io</code>。</p>
-<p>这代表网站源码要通过github托管，会使用<code>Github Pages</code>部署，别人可以通过<code>https://admibrill.github.io</code>来访问我的网站。</p>
-<h3 id="本地源文件存储文件夹"><a href="#本地源文件存储文件夹" class="headerlink" title="本地源文件存储文件夹"></a>本地源文件存储文件夹</h3><p>在你喜欢的位置，建一个文件夹，起一个喜欢的名字（建议不要有汉字）。</p>
-<p>不同的人起的名字不同，这个文件夹就用<code>[blogroot]</code>来指代。</p>
-<h3 id="node-js和git的安装"><a href="#node-js和git的安装" class="headerlink" title="node.js和git的安装"></a>node.js和git的安装</h3><p><a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-<p><a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
-<p>下载安装之后，打开<code>[blogroot]</code>，右键单击空白处，即可发现菜单中多出来了<code>Git Bash Here</code>一项</p>
-<p> <img src="https://image.m-c.top/?/images/2024/08/23/NuXMqVMoUZ/1111.png" alt=""> </p>
-<p>打开它，然后后面的很多命令都使用bash输入。</p>
-<h3 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>然后，因为我是第一次使用，配置用户名和邮箱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;&lt;your username&gt;&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="连接至github"><a href="#连接至github" class="headerlink" title="连接至github"></a>连接至github</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Hexo，启动！！！"><a href="#Hexo，启动！！！" class="headerlink" title="Hexo，启动！！！"></a>Hexo，启动！！！</h2><h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>打开<code>[blogroot]</code>,右键选择‘<code>Git bash here</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>这时，我们的<code>[blogroot]</code>中缓缓出现了很多文件。</p>
-<p>Hexo会自动安装依赖包。</p>
-<p>等待程序执行完成，命令行中会出现一句<code>Start blogging with Hexo!</code>就代表Hexo初始化成功了。</p>
-<h3 id="安装挂载依赖包"><a href="#安装挂载依赖包" class="headerlink" title="安装挂载依赖包"></a>安装挂载依赖包</h3><p>有一个包Hexo不会自动安装，叫做<code>hexo-deployer-git</code>。</p>
-<p>我们就要使用npm的安装命令安装它(以后安装一些包通用)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>等待运行完成就好了。</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>打开<code>[blogroot]</code>目录下的<code>_config.yml</code>文件，修改以下设置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://&lt;your</span> <span class="string">username&gt;.github.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">	<span class="attr">repository:</span> <span class="string">https://github.com/&lt;your</span> <span class="string">username&gt;/&lt;your</span> <span class="string">username&gt;.github.io.git</span></span><br></pre></td></tr></table></figure>
-<h3 id="挂载博客到Github-Pages"><a href="#挂载博客到Github-Pages" class="headerlink" title="挂载博客到Github Pages"></a>挂载博客到Github Pages</h3><p>常用运行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<p>这个命令用于清除之前生成的静态文件。第一次没有生成，所以不用</p>
-<p>后面只要使用了<code>hexo g</code>就一定要使用，因为<code>hexo g</code>不会把之前生成过的文件再生成一遍，在<code>hexo g</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>这样，我们就把网站上传了，如果你想在本地预览，就运行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>这些就是常用命令。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我通过这样的方式建立了这样的一个个人空间。</p>
-<p>我知道网上有很多这样的教程，但是这是我的个人经验，总体上还是能算原创的，再次感谢<a href="https://www.fomal.cc/posts/e593433d.html">Fomal大佬的教程</a>。</p>
-<p>下一篇，我讲讲关于博客的美化。886！</p>
+    <title>自己动手写二维物理引擎（零）</title>
+    <url>/2024/09/28/hexo5/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="为什么要写物理引擎"><a href="#为什么要写物理引擎" class="headerlink" title="为什么要写物理引擎"></a>为什么要写物理引擎</h2><p>其实在很久以前就用过别人的物理引擎了，可是这些引擎的功能不满足我的需求，比如说不支持流体的运动，以及实现把一个物体切割成两部分等，还可以制造燃烧，爆炸等效果，别人的物理引擎都没有。所以我决定自己先用python写一款物理引擎，后面再写成JavaScript来实现网页上的效果。</p>
+<p>本文的编号是零，意思是这是写物理引擎前的准备工作。</p>
+<h2 id="物理引擎的结构"><a href="#物理引擎的结构" class="headerlink" title="物理引擎的结构"></a>物理引擎的结构</h2><p>组成物理引擎的是窗口（Window），力（Force），物体（Object）和效果（Effect）。</p>
+<p>窗口就是一个物理场，它记录了很多物理常量（如重力加速度等）</p>
+<p>同时，它也是物体的载体，可以控制物体是否能跑到窗口外面去。</p>
+<p>力可以使物体运动。会考虑重力、引力、浮力等。</p>
+<p>物体分为三种：刚体（solid）、流体（liquid）、和关节（joint）</p>
+<blockquote>
+<p>刚体是指在运动中和受力作用后，形状和大小不变，而且内部各点的相对位置不变的物体。</p>
+</blockquote>
+<p>刚体可以分为线段（segment）球体（其实就是一个圆，circle）和多边形（polygon）。</p>
+<p>每个刚体都会考虑碰撞。</p>
+<p>流体分为牛顿流体和非牛顿流体。</p>
+<p>关节可以约束两个刚体，可以伸缩。</p>
+<p>效果则包含劈裂、燃烧等</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h2><p>在同一个目录下新建<code>physics.py</code>和<code>demo.py</code>。<code>physics.py</code>使我们的物理引擎。<code>demo.py</code>则用来测试</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>physics.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> pygame.<span class="built_in">locals</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">pygame.init()</span><br><span class="line"><span class="comment"># pygame.draw.circle(window, (0, 0, 255),[300,300], 170, 0)</span></span><br><span class="line"><span class="comment"># pygame.draw.polygon(window, (255,0,0), [[300,300],[100,400],[100,300]])</span></span><br><span class="line"><span class="comment"># pygame.draw.line(window, (0, 0, 0), [100, 300], [500, 300], 5)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Window</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,width,height,caption</span>):</span><br><span class="line">        <span class="variable language_">self</span>.width=width</span><br><span class="line">        <span class="variable language_">self</span>.height=height</span><br><span class="line">        <span class="variable language_">self</span>.caption=caption</span><br><span class="line">        <span class="variable language_">self</span>.surface=pygame.display.set_mode((<span class="variable language_">self</span>.width,<span class="variable language_">self</span>.height))</span><br><span class="line">        <span class="variable language_">self</span>.bodies=[]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        pygame.display.set_caption(<span class="variable language_">self</span>.caption)</span><br><span class="line">        flag=<span class="literal">True</span></span><br><span class="line">        <span class="keyword">while</span> flag:</span><br><span class="line">            pygame.display.update()</span><br><span class="line">            <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get():</span><br><span class="line">                <span class="keyword">if</span> event.<span class="built_in">type</span> == QUIT:</span><br><span class="line">                    pygame.quit()</span><br><span class="line">                    flag=<span class="literal">False</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Object</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solid</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Liquid</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Joint</span>(<span class="title class_ inherited__">Object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>demo.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> physics</span><br><span class="line">window1=physics.Window(<span class="number">1000</span>,<span class="number">600</span>,<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line">window1.run()</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Hexo</category>
-        <category>日常记录</category>
+        <category>物理引擎</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>建站</tag>
-        <tag>免费</tag>
+        <tag>物理引擎</tag>
       </tags>
   </entry>
   <entry>
@@ -301,7 +301,27 @@
         <category>日常记录</category>
       </categories>
       <tags>
-        <tag>-日常记录</tag>
+        <tag>日常记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自己动手写二维物理引擎（一）</title>
+    <url>/2024/10/16/hexo7/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一篇，继续之前的想法，开始写物理引擎的代码。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="导入库"><a href="#导入库" class="headerlink" title="导入库"></a>导入库</h2><p>打开<code>physics.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">from</span> pygame.<span class="built_in">locals</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> math</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>pygame</code>：这是一个Python专门用来编写游戏的库。这里我们用它来实现窗口以及内容的显示。</li>
+<li><code>math</code>：Python数学库，用来处理一些高级的物理计算。</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DYMANIC=<span class="number">0</span></span><br><span class="line">STATIC=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>这些常量定义了物体的状态等信息，后学会有更多常量写在这里。</p>
+]]></content>
+      <categories>
+        <category>物理引擎</category>
+      </categories>
+      <tags>
+        <tag>物理引擎</tag>
       </tags>
   </entry>
 </search>
