@@ -6,7 +6,7 @@
   <link href="https://blog.qyadbr.top/atom.xml" rel="self"/>
   
   <link href="https://blog.qyadbr.top/"/>
-  <updated>2025-01-18T04:06:03.811Z</updated>
+  <updated>2025-01-20T03:14:37.392Z</updated>
   <id>https://blog.qyadbr.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qt Troubleshoot（三）</title>
+    <link href="https://blog.qyadbr.top/2025/01/20/hexo12/"/>
+    <id>https://blog.qyadbr.top/2025/01/20/hexo12/</id>
+    <published>2025-01-20T02:21:09.000Z</published>
+    <updated>2025-01-20T03:14:37.392Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-setWindowFlags-Qt-WindowType-WindowStayOnTopHint-窗口隐藏"><a href="#1-setWindowFlags-Qt-WindowType-WindowStayOnTopHint-窗口隐藏" class="headerlink" title="1.setWindowFlags(Qt.WindowType.WindowStayOnTopHint)窗口隐藏"></a>1.<code>setWindowFlags(Qt.WindowType.WindowStayOnTopHint)</code>窗口隐藏</h1><p>制作了一个可以自动显示的窗口类，实例化后自动显示，无需<code>window.show()</code>。但是，在<code>show()</code>之后又通过<code>setWindowFlags()</code>方法设置窗口置顶时：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PySide6.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide6.QtCore <span class="keyword">import</span> *</span><br><span class="line">app=QApplication()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWindow</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.show()</span><br><span class="line">        <span class="variable language_">self</span>.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)</span><br><span class="line">window=MyWindow()</span><br><span class="line">app.<span class="built_in">exec</span>()</span><br></pre></td></tr></table></figure><p>这个窗口刚显示出来就隐藏了。<br>我想这也是为什么<code>Qt</code>的窗口不会自动显示的原因之一。但是如果一定要在构造函数里面自动显示，而且<code>setWindowFlags()</code>必须放在<code>show()</code>的后面的时候，就会出现这个问题。</p><p>当然，可以在设置完之后再显示一次。但是，这样窗口还是会隐藏，在用户看来就是窗口闪了一下。</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>所以，以后在调用了<code>show()</code>之后就不要用<code>setWindowFlags()</code>来设置窗口置顶了。（经过测试，设置其他的还行，比如说设置无边框就没有这种问题）<br>改成用<code>window.windowHandle().setFlags()</code>，作用是相同的，但是窗口不会隐藏。</p><h1 id="2-window-hasFocus-不能正确判断窗口焦点"><a href="#2-window-hasFocus-不能正确判断窗口焦点" class="headerlink" title="2.window.hasFocus()不能正确判断窗口焦点"></a>2.<code>window.hasFocus()</code>不能正确判断窗口焦点</h1><p>其实，<code>window.hasFocus()</code>并不是不能正确判断窗口焦点，它只判断这个窗口内的这个元件是否有焦点。焦点也不是自动变化的，而是要通过<code>setFocus()</code>来转移焦点到当前原件上。当窗口有焦点（窗口被点击，被系统置于所有其他窗口的上方）时，并不会自动调用<code>setFocus()</code>。</p><p>在窗口的<code>mousePressEvent()</code>中调用<code>setFocus</code>不是一种正确的做法。因为这样确实让<code>hasFocus()</code>返回的值变为<code>True</code>了，但是这将影响到里面元件的焦点。窗口和里面的所有元件中只能有一个有焦点，与窗口与其他窗口的只有一个的焦点不是同一个。</p><p>所以，<code>QWidget</code>专门提供了一个函数来判断当前窗口和其他窗口中，只有一个窗口有的那个焦点，在不在窗口上。这个函数就是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.isActiveWindow()</span><br></pre></td></tr></table></figure></p><p>当然，对应地，<code>setFocus()</code>函数也是只对当前元件所在窗口内的，如果需要设置窗口的全局焦点，那么方法名字应改为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.activateWindow()</span><br></pre></td></tr></table></figure></p><h1 id="3-setWindowIcon-不改变任务栏图标"><a href="#3-setWindowIcon-不改变任务栏图标" class="headerlink" title="3.setWindowIcon()不改变任务栏图标"></a>3.<code>setWindowIcon()</code>不改变任务栏图标</h1><p>开发应用程序时，常常需要把窗口的图标改成自己的图标。设置的方法很简单，就是<code>window.setWindowIcon()</code>。<br>所以写了一个设置图标的测试程序：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PySide6.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide6.QtCore <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PySide6.QtGui <span class="keyword">import</span> *</span><br><span class="line">app=QApplication()</span><br><span class="line">window=QWidget()</span><br><span class="line">window.setWindowIcon(QPixmap(<span class="string">&#x27;../icon.png&#x27;</span>))</span><br><span class="line">window.show()</span><br><span class="line">app.<span class="built_in">exec</span>()</span><br></pre></td></tr></table></figure><br>运行效果如图：<br><img src="https://s1.imagehub.cc/images/2025/01/20/3a7403e181cf89c2e0a2040a591cf698.png" alt="image"><br>可以看到，窗口左上角图标和任务栏图标悬停后显示的缩略图的左上角图标都被设置了。但是任务栏上的那个图标没有被设置。<br>这个是Windows系统的一个问题，Windows认为所有的Python程序都是同一个appid，所以所有打开的窗口都显示同意个图标，Python的图标。为了修改appid，我们只能利用<code>ctypes</code>库访问系统dll。<br>为了防止程序在其他操作系统报错无法执行，这段代码外面要加上一层<code>try...except</code>语句。<br>在导入库之后紧接着加入这段代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> ctypes <span class="keyword">import</span> windll</span><br><span class="line">    windll.shell32.SetCurrentProcessExplicitAppUserModelID(<span class="string">&#x27;&lt;your appid&gt;&#x27;</span>)</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br>把<code>&lt;your appid&gt;</code>替换为一个字符串，建议包含一些有关应用程序的信息，每条信息用<code>.</code>隔开。<br>最终效果：<br><img src="https://s1.imagehub.cc/images/2025/01/20/7a13b0e65efa7bd8b5936b830996df3f.png" alt="image"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-setWindowFlags-Qt-WindowType-WindowStayOnTopHint-窗口隐藏&quot;&gt;&lt;a href=&quot;#1-setWindowFlags-Qt-WindowType-WindowStayOnTopHint-窗口隐藏&quot; class=&quot;headerlink&quot; title=&quot;1.setWindowFlags(Qt.WindowType.WindowStayO</summary>
+      
+    
+    
+    
+    <category term="Qt" scheme="https://blog.qyadbr.top/categories/Qt/"/>
+    
+    <category term="Qt Troubleshoot" scheme="https://blog.qyadbr.top/categories/Qt/Qt-Troubleshoot/"/>
+    
+    
+    <category term="Qt" scheme="https://blog.qyadbr.top/tags/Qt/"/>
+    
+  </entry>
   
   <entry>
     <title>Qt Troubleshoot（二）</title>
