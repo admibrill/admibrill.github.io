@@ -1,3 +1,6 @@
+function ccc(res){
+    ipLoacation = res;
+}
 //get请求
 $.ajax({
     type: 'get',
